@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/frisbee.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/catcher.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -30,3 +31,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.11126, 1.99083, 6.77392 )
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.299524, 0.954089, 0, -0.954089, 0.299524, 0, 82, 66 )
 shadow_enabled = true
+
+[node name="Catcher" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0 )

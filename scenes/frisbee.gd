@@ -1,4 +1,5 @@
 extends RigidBody
+class_name Frisbee
 
 
 # Declare member variables here. Examples:

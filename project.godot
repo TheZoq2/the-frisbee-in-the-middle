@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://script_templates/base_fsm_state.gd"
 }, {
+"base": "Area",
+"class": "Catcher",
+"language": "GDScript",
+"path": "res://scenes/catcher.gd"
+}, {
+"base": "RigidBody",
+"class": "Frisbee",
+"language": "GDScript",
+"path": "res://scenes/frisbee.gd"
+}, {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
@@ -21,6 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Base_FSM_State": "",
+"Catcher": "",
+"Frisbee": "",
 "Player": ""
 }
 
@@ -75,6 +87,11 @@ Scroll_Up={
 Scroll_Down={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+catch={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
 
