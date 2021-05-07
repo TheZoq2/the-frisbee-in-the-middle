@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 
     velocity = calculate_velocity(heading)
 
-    print(velocity)
+    # print(velocity)
     velocity = move_and_slide(velocity, Vector3.UP, true,  4, 0.785398, false)
 
 

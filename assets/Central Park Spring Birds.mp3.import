@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Central Park Spring Birds.mp3-c4d0cbd76e027fa30bca0025834b7be5.mp3str"
+
+[deps]
+
+source_file="res://assets/Central Park Spring Birds.mp3"
+dest_files=[ "res://.import/Central Park Spring Birds.mp3-c4d0cbd76e027fa30bca0025834b7be5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
