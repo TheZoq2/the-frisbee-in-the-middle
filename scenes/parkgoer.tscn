@@ -20,3 +20,6 @@ shape = SubResource( 1 )
 [node name="CSGMesh" type="CSGMesh" parent="CollisionShape"]
 transform = Transform( 0.503113, 0, 0, 0, 0.503113, -1.0877e-08, 0, -1.0877e-08, 0.75195, 0, 0, 0 )
 mesh = SubResource( 2 )
+
+[node name="frisbee_origin" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6253, 0 )

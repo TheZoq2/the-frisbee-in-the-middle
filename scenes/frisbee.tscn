@@ -10,7 +10,8 @@ height = 0.2
 [node name="frisbee" type="RigidBody"]
 script = ExtResource( 1 )
 
-[node name="frisbee" parent="." instance=ExtResource( 2 )]
-
 [node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
 shape = SubResource( 1 )
+
+[node name="frisbee" parent="CollisionShape" instance=ExtResource( 2 )]
