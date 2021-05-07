@@ -10,7 +10,7 @@ onready var CameraYRot = get_node("BoomYRot/BoomXRot/BOOM_CAM_SEP/CameraY_Rotato
 onready var Cam = get_node("BoomYRot/BoomXRot/BOOM_CAM_SEP/CameraY_Rotator/CameraX_Rotator/Camera")
 
 
-var camera_sensitivity := 0.4
+var camera_sensitivity := 0.1
 var camera_zoom_sensitivity := 0.1
 ############################     ######     #      ###  ###
 ######  Camera Control #####     ##        # #     #  ##  #
@@ -25,16 +25,14 @@ func _ready():
 func _input(event: InputEvent) -> void:
 
     if event is InputEventMouseMotion:
-        if Input.get_action_strength("Mouse_Wheel") :
-            self.BoomYRot.rotate_y(deg2rad(-event.relative.x) * self.camera_sensitivity)
-        else:
-             get_parent().rotate_y(deg2rad(-event.relative.x) * self.camera_sensitivity)
+        
+        get_parent().rotate_y(deg2rad(-event.relative.x) * self.camera_sensitivity)
             
         self.BoomXRot.rotate_x(deg2rad(event.relative.y) * self.camera_sensitivity)
-        self.BoomXRot.rotation_degrees.x = clamp(self.BoomXRot.rotation_degrees.x, -90, 90)
+        self.BoomXRot.rotation_degrees.x = clamp(self.BoomXRot.rotation_degrees.x, -90, 90) 
 
     #camera zoom
     self.BOOM_CAM_SEP.translation.z += (Input.get_action_strength("Scroll_Up") - Input.get_action_strength("Scroll_Down")) * camera_zoom_sensitivity
-    self.BOOM_CAM_SEP.translation.z = clamp(self.BOOM_CAM_SEP.translation.z, -0.2, 1.5)
+    self.BOOM_CAM_SEP.translation.z = clamp(self.BOOM_CAM_SEP.translation.z, -0.2, 3)
 
 
