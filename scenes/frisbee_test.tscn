@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/frisbee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/parkgoer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -13,6 +14,7 @@ albedo_color = Color( 0.235294, 0.572549, 0.0784314, 1 )
 [node name="Spatial" type="Spatial"]
 
 [node name="ground" type="StaticBody" parent="."]
+collision_layer = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="ground"]
 transform = Transform( 100, 0, 0, 0, 0.1, 0, 0, 0, 100, 0, 0, 0 )
@@ -23,11 +25,13 @@ mesh = SubResource( 2 )
 material = SubResource( 3 )
 
 [node name="Spatial" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00848186, 1.75805, -0.00535083 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00848186, 1.75805, 3.12633 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.299524, 0.954089, 0, -0.954089, 0.299524, 0, 82, 66 )
 shadow_enabled = true
 
+[node name="parkgoer" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04167, 0, 1.87342 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 0.9, 0 )
