@@ -21,6 +21,7 @@ func _ready():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     assert(parent != null, "CamController needs a parent")
     #assert(parent.rotate_camera != null && parent.mouse_right != null, "parent has to have the variables mouse_right and rotate_camera")
+    apply_zoom()
 
 func _input(event: InputEvent) -> void:
 
@@ -33,6 +34,8 @@ func _input(event: InputEvent) -> void:
 
     #camera zoom
     self.BOOM_CAM_SEP.translation.z += (Input.get_action_strength("Scroll_Up") - Input.get_action_strength("Scroll_Down")) * camera_zoom_sensitivity
-    self.BOOM_CAM_SEP.translation.z = clamp(self.BOOM_CAM_SEP.translation.z, -0.2, 3)
+    apply_zoom()
 
+func apply_zoom():
+    self.BOOM_CAM_SEP.translation.z = clamp(self.BOOM_CAM_SEP.translation.z, -0.2, 3)
 
