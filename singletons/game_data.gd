@@ -16,6 +16,7 @@ const HIGHSCORE : String = "user://high_score.json"
 #08. exported variables                                         #
 #09. public variables                                           #
 #10. private variables                                          #
+var current_score : int = 0
 """
 {
 	score : username
@@ -32,7 +33,7 @@ func _ready():
 #15. public methods                                             #
 func save_data(data : Dictionary, path : String) -> void:
 	var file : File = File.new()
-	file.open(path, _File.WRITE)
+	file.open(path, File.WRITE)
 	file.store_line(to_json(data))
 	file.close()
 #16. private methods                                            #
@@ -41,7 +42,7 @@ func _get_highscore_data() -> Dictionary:
 	var file : File = File.new()
 	if not file.file_exists(HIGHSCORE):
 		save_data(highscore_data, HIGHSCORE)
-	file.open(HIGHSCORE, _File.READ)
+	file.open(HIGHSCORE, File.READ)
 	var file_content = file.get_as_text()
 	var data = parse_json(file_content)
 	file.close()

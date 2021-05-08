@@ -17,6 +17,7 @@ extends Node
 #10. private variables                                          #
 var main_menu : PackedScene = preload("res://scenes/menues/MainMenu.tscn")
 var main : PackedScene = preload("res://scenes/the_park/the_park.tscn")
+var end_game_menu : PackedScene = preload("res://scenes/menues/end_game_menu.tscn")
 var is_vr : bool = false
 #11. onready variables                                          #
 #                                                               #
@@ -57,6 +58,7 @@ func _on_startvr(current_scene):
 		is_vr = true
 		current_scene.queue_free()
 		add_child(main_scene)
+		get_tree().paused = false
 	else:
 		print("OpenVR did not start correctly")
 
@@ -69,5 +71,44 @@ func restart(current_scene):
 	if is_vr:
 		_on_startvr(current_scene)
 	else:
-		_on_startgame(current_scene)
+		end_game_menu(current_scene)
+
+func end_game_menu(current_scene):
+	var end_menu = end_game_menu.instance()
+	current_scene.queue_free()
+	get_tree().paused = false
+	add_child(end_menu)
+	
+		#_on_startgame(current_scene)
 #################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
