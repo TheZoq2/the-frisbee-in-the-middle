@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
+[ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/parkgoer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/the_park/GUI.gd" type="Script" id=4]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
@@ -91,7 +92,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameMenu" parent="GUI" instance=ExtResource( 8 )]
+[node name="GameMenu" parent="GUI" instance=ExtResource( 2 )]
 visible = false
 
 [node name="ARVROrigin" parent="." instance=ExtResource( 7 )]
