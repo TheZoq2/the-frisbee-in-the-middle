@@ -18,6 +18,7 @@ signal startvr
 #09. public variables                                           #
 #10. private variables                                          #
 #11. onready variables                                          #
+
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
@@ -39,3 +40,13 @@ func _on_TextureButton_pressed():
 
 func _on_startvr_pressed():
 	emit_signal("startvr", self)
+
+
+func _on_InfoButton_pressed():
+	$InfoScreen.visible = true
+	$VBoxContainer.visible = false
+
+
+func _on_OKButton_pressed():
+	$VBoxContainer.visible = true
+	$InfoScreen.visible = false
