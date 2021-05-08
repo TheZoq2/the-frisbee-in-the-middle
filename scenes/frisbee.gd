@@ -49,10 +49,10 @@ func highlight_this_frame():
 
 
 func _on_frisbee_body_entered(body):
-	#print("collision with: ", body.name)
 	has_collided = true
+	if is_caught: # Hand already on the way
+		return
 	if body.name == "ground":
-		#print("collided with ground")
 		is_caught = true
 		has_landed = true
 		angular_velocity = Vector3.ZERO
