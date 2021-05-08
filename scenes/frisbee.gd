@@ -71,6 +71,10 @@ func _on_frisbee_body_entered(body):
 func play_sound():
 	$AudioStreamPlayer3D.play()
 
+func stop_sound():
+	$AudioStreamPlayer3D.stop()
+	
+
 
 func _on_DespawnTimer_timeout():
 	queue_free()

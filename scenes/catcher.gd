@@ -11,7 +11,6 @@ func _process(_delta):
 	var closest_distance: float;
 	for body in get_overlapping_bodies():
 		if body is Frisbee and !body.is_caught:
-			body.play_sound()
 			var distance: float = self.global_transform.origin.distance_to(
 				body.global_transform.origin)
 			if closest_frisbee == null or distance < closest_distance:
@@ -20,6 +19,7 @@ func _process(_delta):
 	if closest_frisbee != null:
 		if Input.is_action_just_pressed("catch"):
 			closest_frisbee.is_caught = true
+			closest_frisbee.stop_sound()
 			var catch_hand = catch_hand_template.instance()
 			get_tree().get_root().add_child(catch_hand)
 			catch_hand.set_target_and_catcher(closest_frisbee, self)
@@ -29,6 +29,18 @@ func _process(_delta):
 			closest_frisbee.highlight_this_frame()
 	vr_catch_pressed = false
 
+
+func _on_Catcher_body_exited(body):
+	if body is Frisbee:
+		body.play_sound()
+
+
+func _on_Catcher_body_entered(body):
+	if body is Frisbee:
+		body.stop_sound()
+
+
 func _on_vr_catch_input():
 	vr_catch_pressed = true
+
 
