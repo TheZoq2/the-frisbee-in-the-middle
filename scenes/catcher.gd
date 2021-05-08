@@ -20,7 +20,6 @@ func _process(_delta):
 			closest_frisbee.is_caught = true
 			var catch_hand = catch_hand_template.instance()
 			get_tree().get_root().add_child(catch_hand)
-			catch_hand.global_transform.origin = global_transform.origin
 			catch_hand.set_target_and_catcher(closest_frisbee, self)
 		else:
 			closest_frisbee.highlight_this_frame()
