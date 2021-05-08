@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/OBJ_kenney_nature/tree_blocks_dark.obj" type="ArrayMesh" id=1]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.912848
+height = 6.27102
+
+[node name="tree_blocks_dark" type="StaticBody"]
+
+[node name="tree_blocks_dark" type="MeshInstance" parent="."]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.07624, 0 )
+shape = SubResource( 1 )
