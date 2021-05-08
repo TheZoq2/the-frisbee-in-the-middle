@@ -1,7 +1,7 @@
 extends Spatial
 
 
-var is_vr;
+var is_vr : bool = false
 
 var normal_player : PackedScene = preload("res://scenes/player/Player.tscn")
 var vr_player : PackedScene = preload("res://scenes/VR/ARVR_root.tscn")
