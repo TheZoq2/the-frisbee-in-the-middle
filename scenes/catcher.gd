@@ -14,7 +14,7 @@ func _process(_delta):
 				closest_frisbee = body
 				closest_distance = distance
 	if closest_frisbee != null:
-		if Input.is_action_pressed("catch"):
+		if Input.is_action_just_pressed("catch"):
 			closest_frisbee.queue_free()
 			emit_signal("frisbee_caught")
 		else:
