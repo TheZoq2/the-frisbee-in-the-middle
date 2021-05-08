@@ -2,7 +2,7 @@ extends Area
 class_name CatchHand
 
 var move_speed: float = 10
-var player_height_offset: float = -0.2
+var player_height_offset: float = -0.4
 
 var target: Frisbee = null
 var catcher = null

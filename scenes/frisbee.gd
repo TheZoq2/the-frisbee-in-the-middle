@@ -11,6 +11,7 @@ var has_collided : bool = false
 var is_highlighted_this_frame: bool = false
 var outline_mesh: MeshInstance
 var is_caught: bool = false
+var has_landed: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,9 +35,10 @@ func _process(delta):
 	
 	if not has_collided:
 		self.apply_central_impulse(Vector3(0, gravity_compensation * delta, 0))
-	else:
-		self.apply_central_impulse(Vector3(0, 0, 0))
 
+	if has_landed:
+		self.apply_central_impulse(Vector3(0, 9.8 * delta, 0))
+		#slowly sink into the ground
 
 	outline_mesh.visible = is_highlighted_this_frame
 	if !is_caught:
@@ -47,11 +49,16 @@ func highlight_this_frame():
 
 
 func _on_frisbee_body_entered(body):
-	#print("collision with: ", body.name)
 	has_collided = true
+	if is_caught: # Hand already on the way
+		return
 	if body.name == "ground":
-		#print("collided with ground")
 		is_caught = true
+		has_landed = true
+		angular_velocity = Vector3.ZERO
+		linear_velocity = Vector3.ZERO
+		collision_layer = 0
+		collision_mask = 0
 		$DespawnTimer.start()
 
 

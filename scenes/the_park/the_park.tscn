@@ -92,6 +92,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD"]
+margin_right = 230.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="GUI/HUD/HBoxContainer"]
+margin_right = 113.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
+text = "Time Left"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameTimeLabel" type="Label" parent="GUI/HUD/HBoxContainer"]
+margin_left = 117.0
+margin_right = 230.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
+text = "60"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GameMenu" parent="GUI" instance=ExtResource( 9 )]
 visible = false
 
@@ -99,3 +131,8 @@ visible = false
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.81398, 0.796733, 0 )
 speed = 3
 rotation_factor = 7.5
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]

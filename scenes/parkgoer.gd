@@ -11,6 +11,10 @@ var direction = Vector3(0, 0, 0);
 
 var frisbee_template = preload("res://scenes/frisbee.tscn")
 
+var is_throwing = false
+var has_thrown = false
+var animation_position_to_throw = 1.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,29 +29,42 @@ func new_velocity():
 
 	self.direction = self.transform.basis.z
 	self.next_direction_change = rand_range(1, 10)
+	
+func start_throw():
+	$person/AnimationPlayer.play("throw")
+	is_throwing = true
+	has_thrown = false
 
 func throw_frisbee():
 	var frisbee = frisbee_template.instance()
 	frisbee.transform.origin = self.get_node("frisbee_origin").global_transform.origin
 	get_parent().call_deferred("add_child", frisbee)
-	self.next_frisbee = rand_range(1, 5);
+	self.next_frisbee = rand_range(1, 5)
+	self.has_thrown = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.next_direction_change -= delta
-	self.next_frisbee -= delta
+	if not is_throwing:
+		self.next_direction_change -= delta
+		self.next_frisbee -= delta
+		
+		if self.next_frisbee < 0:
+			self.start_throw()
 
-	# print(self.next_frisbee)
+		if self.next_direction_change < 0:
+			self.new_velocity()
 
-	if self.next_frisbee < 0:
-		self.throw_frisbee()
+		if self.move_and_collide(Vector3(self.direction * delta)):
+			pass
 
-	if self.next_direction_change < 0:
-		self.new_velocity()
+		if not $person/AnimationPlayer.is_playing():
+			$person/AnimationPlayer.play("walk")
+	else:
+		var anim_pos = $person/AnimationPlayer.current_animation_position 
+		if not self.has_thrown and anim_pos > animation_position_to_throw:
+			self.throw_frisbee()
 
-	if self.move_and_collide(Vector3(self.direction * delta)):
-		pass
-
-	if not $person/AnimationPlayer.is_playing():
-		$person/AnimationPlayer.play("walk")
+		if not $person/AnimationPlayer.is_playing():
+			$person/AnimationPlayer.play("walk")
+			self.is_throwing = false
