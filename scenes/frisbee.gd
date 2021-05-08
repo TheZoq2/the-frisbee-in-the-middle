@@ -19,7 +19,7 @@ func _ready():
 
 	var player_direction = (player_pos - self.global_transform.origin).normalized();
 	#print(player_direction)
-	var direction = atan2(player_direction.z, player_direction.x) + rand_range(-PI/4, PI/4)
+	var direction = atan2(player_direction.z, player_direction.x) + rand_range(-PI/8, PI/8)
 	var force = 3;
 	var upforce = 0.2
 	self.apply_central_impulse(Vector3(cos(direction), upforce, sin(direction)) * force)

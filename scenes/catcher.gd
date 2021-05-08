@@ -4,6 +4,7 @@ class_name Catcher
 signal frisbee_caught
 
 var catch_hand_template = preload("res://scenes/catch_hand.tscn")
+var vr_catch_pressed = false
 
 func _process(_delta):
 	var closest_frisbee: Frisbee = null
@@ -18,9 +19,17 @@ func _process(_delta):
 				closest_distance = distance
 	if closest_frisbee != null:
 		if Input.is_action_just_pressed("catch"):
+			vr_catch_pressed = false
 			closest_frisbee.is_caught = true
 			var catch_hand = catch_hand_template.instance()
 			get_tree().get_root().add_child(catch_hand)
 			catch_hand.set_target_and_catcher(closest_frisbee, self)
+		elif vr_catch_pressed:
+			closest_frisbee.queue_free()
 		else:
 			closest_frisbee.highlight_this_frame()
+
+
+func _on_vr_catch_input():
+	vr_catch_pressed = true
+
