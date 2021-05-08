@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/menues/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/startbild.PNG" type="Texture" id=4]
 [ext_resource path="res://assets/RedButton.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Kenney Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/startbild_game_rules.PNG" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 23
@@ -174,6 +175,8 @@ size_flags_vertical = 3
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+texture = ExtResource( 7 )
+expand = true
 
 [node name="Label2" type="Label" parent="InfoScreen"]
 anchor_right = 1.0
