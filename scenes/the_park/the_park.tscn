@@ -73,7 +73,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GUI/HUD/TextureRect/Panel/HBoxContainer"]
-margin_right = 165.0
+margin_right = 159.0
 margin_bottom = 34.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -85,7 +85,7 @@ __meta__ = {
 }
 
 [node name="NR" type="Label" parent="GUI/HUD/TextureRect/Panel/HBoxContainer"]
-margin_left = 169.0
+margin_left = 163.0
 margin_right = 204.0
 margin_bottom = 34.0
 size_flags_horizontal = 3

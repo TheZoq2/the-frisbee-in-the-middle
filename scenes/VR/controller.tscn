@@ -1,17 +1,24 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
-[sub_resource type="CylinderShape" id=1]
-radius = 0.0392008
-height = 1.00586
+[ext_resource path="res://scenes/catcher.gd" type="Script" id=1]
+[ext_resource path="res://scenes/VR/controller.gd" type="Script" id=2]
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.1
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_transparent = true
+albedo_color = Color( 0.878431, 0.0705882, 0.0705882, 0.168627 )
 
 [node name="controller" type="ARVRController"]
+script = ExtResource( 2 )
 
-[node name="RigidBody" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.501348 )
+[node name="Area" type="Area" parent="."]
+script = ExtResource( 1 )
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-transform = Transform( 0.999864, -0.0137557, 0.0090599, 0.00900604, -0.00397217, -0.999952, 0.013791, 0.999897, -0.00384776, 0, 0, 0 )
-shape = SubResource( 1 )
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 3 )
 
-[node name="CSGCylinder" type="CSGCylinder" parent="RigidBody/CollisionShape"]
-transform = Transform( 0.000365662, -0.013791, -0.0405963, -0.00016128, -0.999898, 0.000558505, -0.0405999, 0.00384779, -0.000367849, 0, 0, 0 )
+[node name="CSGSphere" type="CSGSphere" parent="Area"]
+radius = 0.1
+material = SubResource( 2 )

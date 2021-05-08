@@ -17,11 +17,15 @@ var has_landed: bool = false
 func _ready():
 	var player_pos: Vector3 = get_parent().player.get_position()
 
+	var max_offset_angle = PI/4;
+	if get_node("/root/GameState").is_vr:
+		max_offset_angle = PI/10;
+
 	var player_direction = (player_pos - self.global_transform.origin).normalized();
 	#print(player_direction)
-	var direction = atan2(player_direction.z, player_direction.x) + rand_range(-PI/4, PI/4)
-	var force = 3;
-	var upforce = 0.2
+	var direction = atan2(player_direction.z, player_direction.x) + rand_range(-PI/10, PI/10)
+	var force = 4;
+	var upforce = 0.1
 	self.apply_central_impulse(Vector3(cos(direction), upforce, sin(direction)) * force)
 	self.add_torque(Vector3(0, 100, 0))
 
