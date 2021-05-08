@@ -31,9 +31,10 @@ func _ready():
 #16. private methods                                            #
 
 func _on_startgame(current_scene):
+	current_scene.queue_free()
+	get_tree().paused = false
 	var main_scene = main.instance()
 	main_scene.is_vr = false
-	current_scene.queue_free()
 	add_child(main_scene)
 
 func _on_startvr(current_scene):
@@ -57,4 +58,9 @@ func _on_startvr(current_scene):
 		add_child(main_scene)
 	else:
 		print("OpenVR did not start correctly")
+
+func game_over():
+	get_tree().paused = true
+	var current_scene = get_child(0)
+	_on_startgame(current_scene)
 #################################################################
