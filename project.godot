@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/frisbee.gd"
 }, {
+"base": "Control",
+"class": "GameMenu",
+"language": "GDScript",
+"path": "res://scenes/menues/GameMenu.gd"
+}, {
 "base": "Node",
 "class": "GameState",
 "language": "GDScript",
@@ -43,6 +48,7 @@ _global_script_class_icons={
 "Base_FSM_State": "",
 "Catcher": "",
 "Frisbee": "",
+"GameMenu": "",
 "GameState": "",
 "Player": "",
 "dog": ""

@@ -19,10 +19,11 @@ func _ready():
 	self.throw_frisbee()
 
 func new_velocity():
-	var move_angle = randf() * 2*PI;
+	var move_angle = randf() * 2*PI
+	self.rotation = Vector3(0, move_angle, 0)
 
-	self.direction = Vector3(cos(move_angle), 0, sin(move_angle))
-	self.next_direction_change = rand_range(1, 10);
+	self.direction = self.transform.basis.z
+	self.next_direction_change = rand_range(1, 10)
 
 func throw_frisbee():
 	var frisbee = frisbee_template.instance()
