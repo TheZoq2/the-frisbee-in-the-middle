@@ -29,7 +29,13 @@ func _physics_process(delta):
 	var length: float = startPoint.distance_to(endPoint)
 	stretch_arm.scale.z = length
 	stretch_arm.global_transform.origin = 0.5 * (startPoint + endPoint)
-	stretch_arm.look_at(endPoint, Vector3.UP)
+	if stretch_arm.global_transform.origin != endPoint:
+		var dot: float = (endPoint - stretch_arm.global_transform.origin) \
+			.normalized().dot(Vector3.UP)
+		if dot == 1 || dot == 0: # Straight up or down
+			stretch_arm.look_at(endPoint, Vector3.FORWARD)
+		else:
+			stretch_arm.look_at(endPoint, Vector3.UP)
 
 	if should_switch_parent:
 		# When the player moves fast away from the target, the target can't be
