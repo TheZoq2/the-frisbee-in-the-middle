@@ -5,9 +5,8 @@ extends KinematicBody
 # var a = 2
 # var b = "text"
 
-var last_frisbee = 10;
-var since_direction_change = 10;
-var rng = RandomNumberGenerator.new()
+var next_frisbee = 0;
+var next_direction_change = 0;
 var direction = Vector3(0, 0, 0);
 
 var frisbee_template = preload("res://scenes/frisbee.tscn")
@@ -15,33 +14,35 @@ var frisbee_template = preload("res://scenes/frisbee.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	self.new_velocity()
 	self.throw_frisbee()
 
 func new_velocity():
-	since_direction_change = 0
-
-	var move_angle = rng.randf() * 2*PI;
+	var move_angle = randf() * 2*PI;
 
 	self.direction = Vector3(cos(move_angle), 0, sin(move_angle))
+	self.next_direction_change = rand_range(1, 10);
 
 func throw_frisbee():
 	var frisbee = frisbee_template.instance()
 	get_tree().get_root().add_child(frisbee)
 	frisbee.global_transform.origin = self.get_node("frisbee_origin").global_transform.origin
-	self.last_frisbee = 0;
+	self.next_frisbee = rand_range(1, 5);
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	self.since_direction_change += delta
-	self.last_frisbee += delta
+	self.next_direction_change -= delta
+	self.next_frisbee -= delta
 
-	if since_direction_change > randf() * 5 + 5:
-		self.new_velocity()
+	# print(self.next_frisbee)
 
-	if last_frisbee > randf() * 5 + 5:
+	if self.next_frisbee < 0:
 		self.throw_frisbee()
+
+	if self.next_direction_change < 0:
+		self.new_velocity()
 
 	if self.move_and_collide(Vector3(self.direction * delta)):
 		pass
