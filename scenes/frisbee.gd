@@ -62,5 +62,9 @@ func _on_frisbee_body_entered(body):
 		$DespawnTimer.start()
 
 
+func play_sound():
+	$AudioStreamPlayer3D.play()
+
+
 func _on_DespawnTimer_timeout():
 	queue_free()

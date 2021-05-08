@@ -10,6 +10,7 @@ func _process(_delta):
 	var closest_distance: float;
 	for body in get_overlapping_bodies():
 		if body is Frisbee and !body.is_caught:
+			body.play_sound()
 			var distance: float = self.global_transform.origin.distance_to(
 				body.global_transform.origin)
 			if closest_frisbee == null or distance < closest_distance:

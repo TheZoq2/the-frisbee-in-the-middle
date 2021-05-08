@@ -39,6 +39,7 @@ func throw_frisbee():
 	var frisbee = frisbee_template.instance()
 	frisbee.transform.origin = self.get_node("frisbee_origin").global_transform.origin
 	get_parent().call_deferred("add_child", frisbee)
+	$AudioStreamPlayer3D.play()
 	self.next_frisbee = rand_range(1, 5)
 	self.has_thrown = true
 
