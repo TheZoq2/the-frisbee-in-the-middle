@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/menues/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=2]
 [ext_resource path="res://assets/GreenButton.png" type="Texture" id=3]
-[ext_resource path="res://assets/frisbee.png" type="Texture" id=4]
+[ext_resource path="res://assets/startbild.PNG" type="Texture" id=4]
 [ext_resource path="res://assets/RedButton.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/Kenney Bold.ttf" type="DynamicFontData" id=6]
 
@@ -19,13 +19,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource( 4 )
+expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -36,34 +34,21 @@ __meta__ = {
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 40 )
+margin_bottom = 140.0
+rect_min_size = Vector2( 0, 140 )
 size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
-margin_top = 44.0
-margin_right = 1024.0
-margin_bottom = 154.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 158.0
+margin_top = 144.0
 margin_right = 1024.0
-margin_bottom = 178.0
+margin_bottom = 164.0
 rect_min_size = Vector2( 0, 20 )
 size_flags_horizontal = 3
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
-margin_top = 182.0
+margin_top = 168.0
 margin_right = 1024.0
-margin_bottom = 242.0
+margin_bottom = 228.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 
@@ -98,9 +83,9 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="VBoxContainer"]
-margin_top = 246.0
+margin_top = 232.0
 margin_right = 1024.0
-margin_bottom = 306.0
+margin_bottom = 292.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 
@@ -135,9 +120,9 @@ __meta__ = {
 }
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
-margin_top = 310.0
+margin_top = 296.0
 margin_right = 1024.0
-margin_bottom = 370.0
+margin_bottom = 356.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 
@@ -172,27 +157,23 @@ __meta__ = {
 }
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 374.0
+margin_top = 360.0
 margin_right = 1024.0
-margin_bottom = 485.0
+margin_bottom = 478.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
-margin_top = 489.0
+margin_top = 482.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InfoScreen" type="ColorRect" parent="."]
+[node name="InfoScreen" type="TextureRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.388235, 0.0392157, 0.0392157, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="InfoScreen"]
 anchor_right = 1.0

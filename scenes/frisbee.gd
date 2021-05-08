@@ -20,7 +20,8 @@ func _ready():
 	#print(player_direction)
 	var direction = atan2(player_direction.z, player_direction.x) + rand_range(-PI/4, PI/4)
 	var force = 3;
-	self.apply_central_impulse(Vector3(cos(direction), 0, sin(direction)) * force)
+	var upforce = 0.2
+	self.apply_central_impulse(Vector3(cos(direction), upforce, sin(direction)) * force)
 	self.add_torque(Vector3(0, 100, 0))
 
 	outline_mesh = self.find_node("Outline") as MeshInstance
