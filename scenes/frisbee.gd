@@ -30,15 +30,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#print(linear_velocity)
-	if linear_velocity.y != 0:
-		if not has_collided:
-			self.apply_central_impulse(Vector3(0, gravity_compensation * delta, 0))
-		else:
-			self.apply_central_impulse(Vector3(0, 0, 0))
+	
+	if not has_collided:
+		self.apply_central_impulse(Vector3(0, gravity_compensation * delta, 0))
 	else:
-		if linear_velocity.length() < 0.2:
-			#print("starting despawn timer")
-			$DespawnTimer.start()
+		self.apply_central_impulse(Vector3(0, 0, 0))
+
 
 	outline_mesh.visible = is_highlighted_this_frame
 	if !is_caught:
@@ -51,6 +48,10 @@ func highlight_this_frame():
 func _on_frisbee_body_entered(body):
 	#print("collision with: ", body.name)
 	has_collided = true
+	if body.name == "ground":
+		#print("collided with ground")
+		is_caught = true
+		$DespawnTimer.start()
 
 
 func _on_DespawnTimer_timeout():
