@@ -17,6 +17,7 @@ func _ready():
 	randomize()
 	self.new_velocity()
 	self.throw_frisbee()
+	$person/AnimationPlayer.play("walk")
 
 func new_velocity():
 	var move_angle = randf() * 2*PI
@@ -47,3 +48,6 @@ func _process(delta):
 
 	if self.move_and_collide(Vector3(self.direction * delta)):
 		pass
+
+	if not $person/AnimationPlayer.is_playing():
+		$person/AnimationPlayer.play("walk")

@@ -20,4 +20,6 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46191, 1.30728, 0 )
 
 [node name="person" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.712995, 0 )
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.0116426, 0 )
+
+[editable path="person"]
