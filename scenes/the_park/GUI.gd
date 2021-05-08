@@ -16,7 +16,7 @@ extends CanvasLayer
 #09. public variables                                           #
 #10. private variables                                          #
 var caught_frisbees : int = 0
-export var game_time : int = 60
+export var game_time : int = 20
 #11. onready variables                                          #
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")

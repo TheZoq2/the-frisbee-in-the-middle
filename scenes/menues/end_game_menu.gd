@@ -35,16 +35,15 @@ func _ready():
 #15. public methods                                             #
 
 #16. private methods                                            #
-func _toggle_state():
-	$DisplayScore.visible = !$DisplayScore.visible
-	$AddScore.visible = !$AddScore.visible
+
 
 
 #################################################################
 
 
 func _on_AddScore_pressed():
-	_toggle_state()
+	$DisplayScore.visible = false 
+	$AddScore.visible = true 
 
 func _on_Restart_pressed():
 	emit_signal("startgame", self)
@@ -55,9 +54,28 @@ func _on_RestartVR_pressed():
 
 
 func _on_SaveScore_pressed():
-	pass
+	var score_entry : Dictionary = {}
+	score_entry[get_node("/root/GameData").get("current_score")] = name_label.text
+	get_node("/root/GameData").add_highscore(score_entry)
+	show_highscore()
 
+func show_highscore():
+	$AddScore.visible = false
+	$HighScore.visible = true
+	refresh_highscore()
 
+func refresh_highscore():
+	$HighScore.clear()
+	for i in range(10):
+		print("i: ", i)
+		#print(get_node("/root/GameData").highscore_data.size())
+		if get_node("/root/GameData").highscore_data.size() - 1 >= i:
+			var score : Dictionary = get_node("/root/GameData").highscore_data[i]
+			print("score: ", score)
+			$HighScore.add_item(str(score.keys()[0]), null, false)
+			$HighScore.add_item(score.values()[0], null, false)
+		else:
+			break
 
 
 

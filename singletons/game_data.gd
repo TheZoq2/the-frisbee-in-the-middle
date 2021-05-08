@@ -22,7 +22,7 @@ var current_score : int = 0
 	score : username
 }
 """
-var highscore_data : Dictionary = {}
+var highscore_data : Array = []
 #11. onready variables                                          #
 #                                                               #
 #12. optional built-in virtual _init method                     #
@@ -31,14 +31,27 @@ func _ready():
 	highscore_data = self._get_highscore_data()
 #14. remaining built-in virtual methods                         #
 #15. public methods                                             #
-func save_data(data : Dictionary, path : String) -> void:
+func save_data(data : Array, path : String) -> void:
+	print("saving data")
 	var file : File = File.new()
 	file.open(path, File.WRITE)
 	file.store_line(to_json(data))
 	file.close()
+
+func add_highscore(score_entry : Dictionary):
+	print("adding highscore")
+	if highscore_data.empty():
+		highscore_data.push_back(score_entry)
+	elif highscore_data[0].keys()[0] < score_entry.keys()[0]:
+		highscore_data.push_front(score_entry)
+	else:
+		highscore_data.push_back(score_entry)
+		highscore_data.sort_custom(self, "custom_sort")
+		print("add highscore: ", highscore_data)
+	save_data(highscore_data, HIGHSCORE)
 #16. private methods                                            #
 
-func _get_highscore_data() -> Dictionary:
+func _get_highscore_data() -> Array:
 	var file : File = File.new()
 	if not file.file_exists(HIGHSCORE):
 		save_data(highscore_data, HIGHSCORE)
@@ -46,6 +59,10 @@ func _get_highscore_data() -> Dictionary:
 	var file_content = file.get_as_text()
 	var data = parse_json(file_content)
 	file.close()
+	print(data)
 	return data
 
+
+func custom_sort(a : Dictionary, b : Dictionary):
+	return a.keys()[0] > b.keys()[0]
 #################################################################
