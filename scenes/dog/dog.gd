@@ -11,6 +11,8 @@ export var arrive_threshold = 1.25
 
 signal dog_caught_frisbee
 
+var jumping = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$dog/AnimationPlayer.play("walk")
@@ -24,6 +26,8 @@ func _physics_process(delta: float) -> void:
 			target.queue_free()
 			target = find_closest_frisbee()
 			emit_signal("dog_caught_frisbee")
+			$dog/AnimationPlayer.play("jump")
+			jumping = true
 			return
 		var new_dog_transform = transform.looking_at(target.global_transform.origin, Vector3.UP)
 		transform = transform.interpolate_with(new_dog_transform, (rotation_factor * delta) / _distance)
