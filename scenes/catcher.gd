@@ -19,7 +19,6 @@ func _process(_delta):
 				closest_distance = distance
 	if closest_frisbee != null:
 		if Input.is_action_just_pressed("catch"):
-			vr_catch_pressed = false
 			closest_frisbee.is_caught = true
 			var catch_hand = catch_hand_template.instance()
 			get_tree().get_root().add_child(catch_hand)
@@ -28,7 +27,7 @@ func _process(_delta):
 			closest_frisbee.queue_free()
 		else:
 			closest_frisbee.highlight_this_frame()
-
+	vr_catch_pressed = false
 
 func _on_vr_catch_input():
 	vr_catch_pressed = true
