@@ -16,13 +16,21 @@ var has_thrown = false
 var animation_position_to_throw = 1.0
 
 # TODO: Adjust these for non-VR 
-var player_too_close = 5;
-var player_too_far = 10;
+var player_too_close;
+var player_too_far;
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+
+	if get_node("/root/GameState").is_vr:
+		player_too_close = 5;
+		player_too_far = 10;
+	else:
+		player_too_close = 0;
+		player_too_far = 50;
+
 	self.new_velocity()
 	self.throw_frisbee()
 	$person/AnimationPlayer.play("walk")
