@@ -13,7 +13,7 @@ signal dog_caught_frisbee
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$dog/AnimationPlayer.play("walk")
 
 func _physics_process(delta: float) -> void:
 	var target = find_closest_frisbee()
@@ -48,3 +48,7 @@ func find_closest_frisbee() -> Frisbee:
 			closest_frisbee = body
 			closest_distance = distance
 	return closest_frisbee
+
+func _process(_delta):
+	if not $dog/AnimationPlayer.is_playing():
+		$dog/AnimationPlayer.play("walk")
