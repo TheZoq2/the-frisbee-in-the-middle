@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
 [ext_resource path="res://scenes/parkgoer.tscn" type="PackedScene" id=3]
@@ -6,8 +6,7 @@
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
 [ext_resource path="res://scenes/the_park/ground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/VR/ARVR_root.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/dog/Doggo.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/dog/dog.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Kenney Bold.ttf"
@@ -97,11 +96,7 @@ visible = false
 
 [node name="ARVROrigin" parent="." instance=ExtResource( 7 )]
 
-[node name="Doggo" parent="." instance=ExtResource( 8 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.81398, 0.895682, 0 )
+[node name="dog" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.81398, 0.796733, 0 )
 speed = 3
 rotation_factor = 7.5
-
-[connection signal="frisbee_caught" from="Player/Catcher" to="GUI" method="_on_Catcher_frisbee_caught"]
-
-[editable path="Player"]

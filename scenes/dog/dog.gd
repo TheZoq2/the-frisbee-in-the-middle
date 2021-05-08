@@ -1,6 +1,6 @@
 extends KinematicBody
 
-class_name Doggo
+class_name dog
 
 onready var _velocity:Vector3 = Vector3.ZERO
 onready var _distance:float = 0.0
