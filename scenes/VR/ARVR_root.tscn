@@ -24,12 +24,12 @@ controller_id = 2
 [node name="right_catch_handler" type="Node" parent="."]
 script = ExtResource( 5 )
 pressed_action = "/actions/godot/in/trigger"
-on_hand = 2
+on_hand = 1
 
 [node name="left_catch_handler" type="Node" parent="."]
 script = ExtResource( 5 )
 pressed_action = "/actions/godot/in/trigger"
-on_hand = 1
+on_hand = 2
 
 [connection signal="pressed" from="right_catch_handler" to="right_controller" method="_on_catch_pressed"]
 [connection signal="pressed" from="left_catch_handler" to="left_controller" method="_on_catch_pressed"]
