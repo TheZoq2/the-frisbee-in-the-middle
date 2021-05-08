@@ -32,7 +32,8 @@ var velocity : Vector3 = Vector3.ZERO
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
-
+func _ready():
+	$Catcher.connect("frisbee_caught", get_node("../GUI"), "_on_Catcher_frisbee_caught")
 #14. remaining built-in virtual methods                         #
 func _input(event: InputEvent) -> void:
 
@@ -69,6 +70,9 @@ func _physics_process(delta: float) -> void:
 
 
 #15. public methods                                             #
+
+func get_position():
+	return self.global_transform.origin
 
 #16. private methods                                            #
 

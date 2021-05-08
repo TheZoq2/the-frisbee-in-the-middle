@@ -22,6 +22,21 @@ var main : PackedScene = preload("res://scenes/the_park/the_park.tscn")
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
+	var start_scene = main_menu.instance()
+	add_child(start_scene)
+	
+#14. remaining built-in virtual methods                         #
+#15. public methods                                             #
+
+#16. private methods                                            #
+
+func _on_startgame(current_scene):
+	var main_scene = main.instance()
+	main_scene.is_vr = false
+	current_scene.queue_free()
+	add_child(main_scene)
+
+func _on_startvr(current_scene):
 	var interface = ARVRServer.find_interface("OpenVR")
 	if interface and interface.initialize():
 		# turn to ARVR mode
@@ -37,19 +52,9 @@ func _ready():
 		Engine.iterations_per_second = 90
 
 		var main_scene = main.instance()
+		main_scene.is_vr = true
+		current_scene.queue_free()
 		add_child(main_scene)
 	else:
-		var start_scene = main_menu.instance()
-		add_child(start_scene)
-	
-#14. remaining built-in virtual methods                         #
-#15. public methods                                             #
-
-#16. private methods                                            #
-
-func _on_startgame(current_scene):
-	var main_scene = main.instance()
-	current_scene.queue_free()
-	add_child(main_scene)
-
+		print("OpenVR did not start correctly")
 #################################################################

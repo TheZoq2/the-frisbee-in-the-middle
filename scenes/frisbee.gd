@@ -12,9 +12,10 @@ var outline_mesh: MeshInstance
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var player: Vector3 = get_parent().player.get_position()
 	var direction = rand_range(0, PI*2)
 	var force = 3;
-	self.apply_central_impulse(Vector3(cos(direction), 0, sin(direction)) * force)
+	self.apply_central_impulse(Vector3(cos(direction), 0.2, sin(direction)) * force)
 	self.add_torque(Vector3(0, 100, 0))
 
 	outline_mesh = self.find_node("Outline") as MeshInstance
