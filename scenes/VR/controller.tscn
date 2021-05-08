@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CylinderShape" id=1]
+radius = 0.0392008
+height = 1.00586
+
+[node name="controller" type="ARVRController"]
+
+[node name="RigidBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.501348 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+transform = Transform( 0.999864, -0.0137557, 0.0090599, 0.00900604, -0.00397217, -0.999952, 0.013791, 0.999897, -0.00384776, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="RigidBody/CollisionShape"]
+transform = Transform( 0.000365662, -0.013791, -0.0405963, -0.00016128, -0.999898, 0.000558505, -0.0405999, 0.00384779, -0.000367849, 0, 0, 0 )

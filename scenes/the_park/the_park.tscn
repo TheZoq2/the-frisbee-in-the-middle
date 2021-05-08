@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/frisbee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/the_park/GUI.gd" type="Script" id=4]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
 [ext_resource path="res://scenes/the_park/ground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/VR/ARVR_root.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFontData" id=4]
 font_path = "res://assets/fonts/Kenney Bold.ttf"
@@ -102,6 +103,8 @@ margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ARVROrigin" parent="." instance=ExtResource( 7 )]
 
 [connection signal="frisbee_caught" from="Player/Catcher" to="GUI" method="_on_Catcher_frisbee_caught"]
 
