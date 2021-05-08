@@ -321,3 +321,4 @@ size_flags_vertical = 3
 [connection signal="pressed" from="DisplayScore/Control3/AddScore" to="." method="_on_AddScore_pressed"]
 [connection signal="pressed" from="DisplayScore/Control/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="DisplayScore/Control2/RestartVR" to="." method="_on_RestartVR_pressed"]
+[connection signal="pressed" from="AddScore/Control3/SaveScore" to="." method="_on_SaveScore_pressed"]
