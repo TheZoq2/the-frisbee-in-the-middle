@@ -17,7 +17,7 @@ func _ready():
 	var player_pos: Vector3 = get_parent().player.get_position()
 
 	var player_direction = (player_pos - self.global_transform.origin).normalized();
-	print(player_direction)
+	#print(player_direction)
 	var direction = atan2(player_direction.z, player_direction.x) + rand_range(-PI/4, PI/4)
 	var force = 3;
 	self.apply_central_impulse(Vector3(cos(direction), 0, sin(direction)) * force)
@@ -49,7 +49,7 @@ func highlight_this_frame():
 
 
 func _on_frisbee_body_entered(body):
-	print("collision with: ", body.name)
+	#print("collision with: ", body.name)
 	has_collided = true
 
 
