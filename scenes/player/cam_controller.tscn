@@ -22,3 +22,4 @@ environment = ExtResource( 1 )
 doppler_tracking = 1
 current = true
 fov = 94.2
+far = 200.0
