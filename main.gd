@@ -63,5 +63,11 @@ func _on_startvr(current_scene):
 func game_over():
 	get_tree().paused = true
 	var current_scene = get_child(0)
-	_on_startgame(current_scene)
+	restart(current_scene)
+	
+func restart(current_scene):
+	if is_vr:
+		_on_startvr(current_scene)
+	else:
+		_on_startgame(current_scene)
 #################################################################
