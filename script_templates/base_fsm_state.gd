@@ -17,45 +17,45 @@ var player
 var skin : CharacterSkin
 
 func _init():
-    pass
+	pass
 
 func _enter_tree():
-    pass
+	pass
 
 func _ready() -> void:
-    yield(self.owner, "ready")
-    
-    var parent = get_parent()
-    if not parent.is_in_group("state_machine"):
-        _parent = parent
-    player = owner.get_parent()
-    
+	yield(self.owner, "ready")
+	
+	var parent = get_parent()
+	if not parent.is_in_group("state_machine"):
+		_parent = parent
+	player = owner.get_parent()
+	
 
-    
+	
 
 
 
 func unhandled_input(_event: InputEvent) -> void:
-    pass
+	pass
 
 
 func process(_delta: float) -> void:
-    pass
+	pass
 
 
 func physics_process(_delta: float) -> void:
-    pass
+	pass
 
 
 func enter(_msg := {}) -> void:
-    pass
+	pass
 
 
 func exit() -> void:
-    pass
+	pass
 
 
 func _get_state_machine(node) -> Node:
-    if node != null and not node.is_in_group("state_machine"):
-        return _get_state_machine(node.get_parent())
-    return node
+	if node != null and not node.is_in_group("state_machine"):
+		return _get_state_machine(node.get_parent())
+	return node
