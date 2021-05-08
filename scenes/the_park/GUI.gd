@@ -55,7 +55,7 @@ func _on_Catcher_frisbee_caught():
 
 
 func _on_ResumeButton_pressed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$GameMenu.set("visible", false)
 	get_tree().set("paused", false)
 
