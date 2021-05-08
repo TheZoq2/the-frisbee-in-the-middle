@@ -12,7 +12,6 @@ script = ExtResource( 2 )
 [node name="BoomXRot" type="Spatial" parent="BoomYRot"]
 
 [node name="BOOM_CAM_SEP" type="Spatial" parent="BoomYRot/BoomXRot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
 
 [node name="CameraY_Rotator" type="Spatial" parent="BoomYRot/BoomXRot/BOOM_CAM_SEP"]
 
@@ -23,9 +22,3 @@ environment = ExtResource( 1 )
 doppler_tracking = 1
 current = true
 fov = 94.2
-
-[node name="InteractionRay" type="RayCast" parent="BoomYRot/BoomXRot/BOOM_CAM_SEP/CameraY_Rotator/CameraX_Rotator/Camera"]
-transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 0, -5.28405 )
-cast_to = Vector3( 0, 0, -3 )
-collision_mask = 524288
-collide_with_areas = true
