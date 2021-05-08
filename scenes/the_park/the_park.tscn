@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/frisbee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/player/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
 [ext_resource path="res://scenes/the_park/ground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/VR/ARVR_root.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Kenney Bold.ttf"
@@ -96,13 +97,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameMenu" type="Control" parent="GUI"]
+[node name="GameMenu" parent="GUI" instance=ExtResource( 8 )]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ARVROrigin" parent="." instance=ExtResource( 7 )]
 
