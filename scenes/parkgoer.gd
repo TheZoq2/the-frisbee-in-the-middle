@@ -20,10 +20,9 @@ func _ready():
 
 func new_velocity():
 	var move_angle = randf() * 2*PI
-	self.transform.basis = Basis()
-	rotate_object_local(Vector3.UP, move_angle)
+	self.rotation = Vector3(0, move_angle, 0)
 
-	self.direction = Vector3(cos(move_angle), 0, sin(move_angle))
+	self.direction = self.transform.basis.z
 	self.next_direction_change = rand_range(1, 10)
 
 func throw_frisbee():
