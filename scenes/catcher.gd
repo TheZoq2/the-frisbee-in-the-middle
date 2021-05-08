@@ -17,3 +17,5 @@ func _process(_delta):
 		if Input.is_action_pressed("catch"):
 			closest_frisbee.queue_free()
 			emit_signal("frisbee_caught")
+		else:
+			closest_frisbee.highlight_this_frame()
