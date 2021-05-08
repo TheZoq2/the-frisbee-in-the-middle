@@ -26,6 +26,7 @@ func _ready():
 	self.add_torque(Vector3(0, 100, 0))
 
 	outline_mesh = self.find_node("Outline") as MeshInstance
+	#print(outline_mesh != null)
 	outline_mesh.hide()
 
 
@@ -46,6 +47,7 @@ func _process(delta):
 
 func highlight_this_frame():
 	is_highlighted_this_frame = true
+	#print("highlighting frisbee")
 
 
 func _on_frisbee_body_entered(body):
