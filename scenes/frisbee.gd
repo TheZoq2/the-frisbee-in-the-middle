@@ -9,6 +9,7 @@ export var gravity_compensation = 9.6;
 
 var is_highlighted_this_frame: bool = false
 var outline_mesh: MeshInstance
+var is_caught: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +31,8 @@ func _process(delta):
 	self.apply_central_impulse(Vector3(0, gravity_compensation * delta, 0))
 
 	outline_mesh.visible = is_highlighted_this_frame
-	is_highlighted_this_frame = false
+	if !is_caught:
+		is_highlighted_this_frame = false
 
 func highlight_this_frame():
 	is_highlighted_this_frame = true
