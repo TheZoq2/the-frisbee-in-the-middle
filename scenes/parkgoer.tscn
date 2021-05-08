@@ -17,7 +17,7 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.09
 shape = SubResource( 1 )
 
 [node name="frisbee_origin" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.46191, 1.30728, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.08472, 1.35901, 0 )
 
 [node name="person" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.0116426, 0 )
