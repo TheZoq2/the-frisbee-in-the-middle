@@ -24,7 +24,9 @@ surfaces/0 = {
 "vertex_count": 221
 }
 
-[node name="frisbee" type="RigidBody"]
+[node name="frisbee" type="RigidBody" groups=[
+"frisbee",
+]]
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
