@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CylinderMesh" id=1]
+
+[node name="StretchArm" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.08, 0, 0, 0, -2.18557e-08, -0.08, 0, 0.5, -3.49691e-09, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
