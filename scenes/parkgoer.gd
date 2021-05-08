@@ -26,7 +26,7 @@ func new_velocity():
 
 func throw_frisbee():
 	var frisbee = frisbee_template.instance()
-	get_tree().get_root().add_child(frisbee)
+	get_parent().add_child(frisbee)
 	frisbee.global_transform.origin = self.get_node("frisbee_origin").global_transform.origin
 	self.next_frisbee = rand_range(1, 5);
 

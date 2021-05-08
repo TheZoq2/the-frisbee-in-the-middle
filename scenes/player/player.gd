@@ -70,6 +70,9 @@ func _physics_process(delta: float) -> void:
 
 #15. public methods                                             #
 
+func get_position():
+	return self.global_transform.origin
+
 #16. private methods                                            #
 
 func calculate_velocity(move_direction : Vector3) -> Vector3:
