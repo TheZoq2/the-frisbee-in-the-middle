@@ -17,6 +17,7 @@ export var move_speed : float = 10.0
 export var max_speed : float = 20.0
 export var gravity : float = -0.80
 export var jump_impulse : float =  20.0
+export var throw_impulse : float = 5.0
 
 
 #09. public variables                                           #
@@ -24,6 +25,9 @@ export var jump_impulse : float =  20.0
 var input_direction : Vector3 = Vector3.ZERO
 var rotation_speed_factor : float = 5.0
 var velocity : Vector3 = Vector3.ZERO
+
+var treat_template = preload("res://scenes/treat.tscn")
+var treat_thrown = false
 
 
 
@@ -42,8 +46,19 @@ func _input(event: InputEvent) -> void:
 		event.is_action_pressed("Jump"),
 		Input.get_action_strength("Move_Backwards") - Input.get_action_strength("Move_Forward")
 	)
- 
 
+	if event.is_action_pressed("throw"):
+		self.treat_thrown = true
+
+ 
+func throw_treat():
+	var treat = treat_template.instance()
+	treat.transform.origin = self.get_node("TreatOrigin").global_transform.origin
+	get_parent().add_child(treat)
+	var direction = -self.global_transform.basis.z * throw_impulse
+	treat.apply_central_impulse(direction)
+	
+	self.treat_thrown = false
 
 func _physics_process(delta: float) -> void:
 	#take input
@@ -66,6 +81,9 @@ func _physics_process(delta: float) -> void:
 
 	# print(velocity)
 	velocity = move_and_slide(velocity, Vector3.UP, true,  4, 0.785398, false)
+	
+	if self.treat_thrown:
+		throw_treat()
 
 
 

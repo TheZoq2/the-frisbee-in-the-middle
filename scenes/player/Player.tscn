@@ -12,6 +12,7 @@ radius = 0.3
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
+throw_impulse = 6.0
 
 [node name="Skin" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.803879, 0 )
@@ -30,3 +31,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.312 )
 
 [node name="Catcher" parent="." instance=ExtResource( 3 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.59353, 0 )
+
+[node name="TreatOrigin" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.53077, 0 )

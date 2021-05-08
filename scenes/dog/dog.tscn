@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/dog/dog.gd" type="Script" id=1]
 [ext_resource path="res://assets/dog.glb" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="CylinderShape" id=2]
 
 [node name="dog" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -14,3 +16,9 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.3
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 disabled = true
+
+[node name="ActiveCandyArea" type="Area" parent="."]
+transform = Transform( 7.5, 0, 0, 0, 1, 0, 0, 0, 7.5, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="ActiveCandyArea"]
+shape = SubResource( 2 )
