@@ -48,6 +48,14 @@ config/name="The-frisbee-in-the-middle"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/zylann.scatter/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
+
 [input]
 
 L_Shift={

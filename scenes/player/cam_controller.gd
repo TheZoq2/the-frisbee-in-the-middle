@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 		
 		get_parent().rotate_y(deg2rad(-event.relative.x) * self.camera_sensitivity)
 			
-		self.BoomXRot.rotate_x(deg2rad(event.relative.y) * self.camera_sensitivity)
+		self.BoomXRot.rotate_x(deg2rad(event.relative.y) * -self.camera_sensitivity)
 		self.BoomXRot.rotation_degrees.x = clamp(self.BoomXRot.rotation_degrees.x, -90, 90) 
 
 
