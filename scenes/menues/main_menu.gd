@@ -35,6 +35,12 @@ func _ready():
 #################################################################
 
 
+func _input(_event):
+	if Input.is_action_just_pressed("ui_accept"):
+		if $InfoScreen.visible:
+			_on_OKButton_pressed()
+
+
 func _on_TextureButton_pressed():
 	emit_signal("startgame", self)
 
