@@ -21,6 +21,8 @@ func _ready():
 	self.rotation = Vector3(0, move_angle, 0)
 	_velocity = -self.transform.basis.z
 	$dog/AnimationPlayer.play("walk")
+	$dog/Armature/Skeleton/CaughtFrisbee/frisbee.hide()
+	$dog/Armature/Skeleton/CaughtFrisbee/treat.hide()
 
 func _physics_process(delta: float) -> void:
 	var target = find_target()
