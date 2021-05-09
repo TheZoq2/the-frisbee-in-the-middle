@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/catch_hand.gd" type="Script" id=1]
 [ext_resource path="res://assets/Material.material" type="Material" id=2]
 [ext_resource path="res://assets/Outline.material" type="Material" id=3]
 [ext_resource path="res://assets/frisbee.glb" type="PackedScene" id=4]
+[ext_resource path="res://assets/hand.glb" type="PackedScene" id=5]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -33,11 +34,15 @@ shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0 )
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
 
+[node name="hand" parent="." instance=ExtResource( 5 )]
+transform = Transform( -0.06, 0, -9.05975e-09, 0, 0.06, 0, 9.05975e-09, 0, -0.06, 0, 0, -0.086627 )
+
 [node name="CaughtFrisbee" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2 )
+transform = Transform( 1, 0, 0, 0, 0.993621, 0.11277, 0, -0.11277, 0.993621, 0, -0.0266965, -0.290772 )
 
 [node name="frisbee" parent="CaughtFrisbee" instance=ExtResource( 4 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )

@@ -17,12 +17,15 @@ extends CanvasLayer
 #10. private variables                                          #
 var dog_score : int = 0 
 var caught_frisbees : int = 0
-export var game_time : int = 20
 #11. onready variables                                          #
+var catch_sound = preload("res://assets/cash_register.ogg")
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
 onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
 onready var treats_label = get_node("HUD/TreatCounter/TreatCountLabel")
+onready var effect_player = get_node("../EffectsPlayer")
+onready var catch_animator = get_node("HUD/TextureRect/Panel/CatchAnimator")
+onready var dog_catch_animator = get_node("HUD/TextureRect2/Panel/DogCatchAnimator")
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
@@ -53,9 +56,12 @@ func _input(_event):
 
 func _on_Catcher_frisbee_caught():
 	#print("# I cought one!!! ")
-	caught_frisbees += 1
-	number_label.text = str(caught_frisbees)
-	get_node("/root/GameData").current_score = caught_frisbees
+	get_node("/root/GameData").current_score += 1
+	number_label.text = str(get_node("/root/GameData").current_score)
+	effect_player.stream = catch_sound
+	effect_player.play()
+	catch_animator.play("Catch")
+	
 
 
 func _on_ResumeButton_pressed():
@@ -69,16 +75,20 @@ func _on_QuitGameButton_pressed():
 
 
 func _on_Timer_timeout():
-	game_time -= 1
-	game_time_label.text = str(game_time)
-	if game_time == 0:
+	get_node("/root/GameData").game_time -= 1
+	game_time_label.text = str(get_node("/root/GameData").game_time)
+	if get_node("/root/GameData").game_time == 0:
 		get_node("/root/GameState").game_over()
 
 
 func _on_dog_dog_caught_frisbee():
 	dog_score += 1
 	dog_score_label.text = str(dog_score)
+<<<<<<< HEAD
 	
 func _on_Player_update_treat_count(remaining_treats):
 	treats_label.text = str(remaining_treats)
 	
+=======
+	dog_catch_animator.play("Catch")
+>>>>>>> af7a3846d86c7e2979e9462db2f8eaadba260d46

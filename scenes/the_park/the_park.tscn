@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
+[ext_resource path="res://resources/the_parkCatch.tres" type="Animation" id=2]
 [ext_resource path="res://scenes/parkgoer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/the_park/GUI.gd" type="Script" id=4]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
 [ext_resource path="res://scenes/the_park/ground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Penguin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/dog/dog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=9]
 
@@ -60,7 +62,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="GUI/HUD/TextureRect"]
+[node name="Panel" type="ColorRect" parent="GUI/HUD/TextureRect"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -69,6 +71,7 @@ margin_left = -102.0
 margin_top = -16.5
 margin_right = 102.0
 margin_bottom = 17.5
+color = Color( 0.145098, 0.141176, 0.141176, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,6 +107,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CatchAnimator" type="AnimationPlayer" parent="GUI/HUD/TextureRect/Panel"]
+anims/Catch = ExtResource( 2 )
+
 [node name="TextureRect2" type="TextureRect" parent="GUI/HUD"]
 anchor_right = 1.0
 margin_left = 442.0
@@ -116,7 +122,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="GUI/HUD/TextureRect2"]
+[node name="Panel" type="ColorRect" parent="GUI/HUD/TextureRect2"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -125,9 +131,7 @@ margin_left = -102.0
 margin_top = -16.5
 margin_right = 102.0
 margin_bottom = 17.5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color( 0.145098, 0.141176, 0.141176, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD/TextureRect2/Panel"]
 anchor_right = 1.0
@@ -159,6 +163,9 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DogCatchAnimator" type="AnimationPlayer" parent="GUI/HUD/TextureRect2/Panel"]
+anims/Catch = ExtResource( 2 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/HUD"]
 margin_right = 230.0
@@ -238,6 +245,11 @@ rotation_factor = 7.5
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Penguin" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429856, 0 )
 
 [connection signal="dog_caught_frisbee" from="dog" to="GUI" method="_on_dog_dog_caught_frisbee"]
 [connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]

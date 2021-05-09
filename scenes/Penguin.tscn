@@ -1,0 +1,178 @@
+[gd_scene load_steps=14 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.184314, 0.203922, 0.254902, 1 )
+
+[sub_resource type="CylinderMesh" id=2]
+material = SubResource( 1 )
+top_radius = 0.18
+bottom_radius = 0.5
+height = 1.0
+
+[sub_resource type="SpatialMaterial" id=3]
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 3 )
+radius = 0.25
+height = 0.6
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.184314, 0.203922, 0.254902, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.184314, 0.203922, 0.254902, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.184314, 0.203922, 0.254902, 1 )
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.184314, 0.203922, 0.254902, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 0.917647, 0.882353, 0.882353, 1 )
+
+[sub_resource type="CapsuleMesh" id=10]
+material = SubResource( 9 )
+radius = 0.2
+mid_height = 0.5
+
+[sub_resource type="PrismMesh" id=11]
+size = Vector3( 0.15, 0.15, 0.1 )
+
+[sub_resource type="SpatialMaterial" id=12]
+albedo_color = Color( 0.913725, 0.317647, 0.317647, 1 )
+
+[sub_resource type="SphereMesh" id=13]
+radius = 0.02
+height = 0.05
+
+[node name="Penguin" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.683285, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="CSGCombiner2" type="CSGCombiner" parent="."]
+transform = Transform( 0.846463, 0.532448, 0, -0.532448, 0.846463, 0, 0, 0, 1, -0.384701, 0, 0 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0734165, 0 )
+width = 0.05
+height = 0.8
+depth = 0.3
+material = SubResource( 6 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.749511, 0.661992, 0, -0.661992, 0.749511, 0, -0.227478, 0.0405632 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.2
+material = SubResource( 7 )
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.749511, 0.661992, 0, -0.661992, 0.749511, 0, -0.227478, -0.0213313 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.2
+material = SubResource( 7 )
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.749511, 0.661992, 0, -0.661992, 0.749511, 0, -0.227478, -0.0841085 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.2
+material = SubResource( 7 )
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.994785, 0.101994, 0, -0.101994, 0.994785, 0, 0.0379503, -0.229066 )
+operation = 2
+width = 0.05
+height = 0.8
+depth = 0.2
+material = SubResource( 7 )
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner2"]
+transform = Transform( 1, 0, 0, 0, 0.988481, -0.151347, 0, 0.151347, 0.988481, 0, 0.0379503, 0.221599 )
+operation = 2
+width = 0.05
+height = 0.8
+depth = 0.2
+material = SubResource( 7 )
+
+[node name="CSGCombiner3" type="CSGCombiner" parent="."]
+transform = Transform( 0.814227, -0.580547, 0, 0.580547, 0.814227, 0, 0, 0, 1, 0.417377, 0.00866774, 0 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0734165, 0 )
+width = 0.05
+height = 0.8
+depth = 0.3
+material = SubResource( 8 )
+
+[node name="CSGBox3" type="CSGBox" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, 0.749511, 0.661992, 0, -0.661992, 0.749511, 0, -0.227478, 0.0405632 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.2
+material = SubResource( 8 )
+
+[node name="CSGBox4" type="CSGBox" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, 0.749511, 0.661992, 0, -0.661992, 0.749511, 0, -0.227478, -0.0213313 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.2
+material = SubResource( 8 )
+
+[node name="CSGBox5" type="CSGBox" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, 0.749511, 0.661992, 0, -0.661992, 0.749511, 0, -0.227478, -0.0841085 )
+operation = 2
+width = 0.05
+height = 0.2
+depth = 0.2
+material = SubResource( 8 )
+
+[node name="CSGBox6" type="CSGBox" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, 0.994785, 0.101994, 0, -0.101994, 0.994785, 0, 0.0379503, -0.229066 )
+operation = 2
+width = 0.05
+height = 0.8
+depth = 0.2
+material = SubResource( 8 )
+
+[node name="CSGBox7" type="CSGBox" parent="CSGCombiner3"]
+transform = Transform( 1, 0, 0, 0, 0.988481, -0.151347, 0, 0.151347, 0.988481, 0, 0.0379503, 0.221599 )
+operation = 2
+width = 0.05
+height = 0.8
+depth = 0.2
+material = SubResource( 8 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.320365, 0.947294, 0, -0.947294, 0.320365, 0, 0, -0.193679 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.020541, 0.999789, 0, -0.999789, 0.020541, 0, 0.722548, -0.262531 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 12 )
+
+[node name="MeshInstance5" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0869174, 0.833533, -0.20476 )
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="MeshInstance6" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0945677, 0.833533, -0.20476 )
+mesh = SubResource( 13 )
+material/0 = null

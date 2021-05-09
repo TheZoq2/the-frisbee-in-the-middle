@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 far = 579.8
 
 [node name="ovr_right_hand" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193462, 0, 0 )
 
 [node name="ovr_left_hand" parent="." instance=ExtResource( 4 )]
 

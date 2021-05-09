@@ -16,7 +16,8 @@ const HIGHSCORE : String = "user://high_score.json"
 #08. exported variables                                         #
 #09. public variables                                           #
 #10. private variables                                          #
-var current_score : int = 0
+var current_score : int
+export var game_time : int
 """
 {
 	score : username
@@ -29,6 +30,8 @@ var highscore_data : Array = []
 #13. built-in virtual _ready method                             #
 func _ready():
 	highscore_data = self._get_highscore_data()
+	self.on_restart()
+
 #14. remaining built-in virtual methods                         #
 #15. public methods                                             #
 func save_data(data : Array, path : String) -> void:
@@ -38,6 +41,10 @@ func save_data(data : Array, path : String) -> void:
 	if result == OK:
 		file.store_line(to_json(data))
 	file.close()
+
+func on_restart():
+	self.game_time = 60
+	self.current_score = 0
 
 func add_highscore(score_entry : Dictionary):
 	print("adding highscore")

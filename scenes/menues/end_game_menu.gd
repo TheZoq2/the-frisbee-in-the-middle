@@ -41,10 +41,19 @@ func _ready():
 #################################################################
 
 
+func _input(_event):
+	if Input.is_action_just_pressed("ui_accept"):
+		if $AddScore.visible:
+			_on_SaveScore_pressed()
+		elif $HighScoreExit.visible:
+			_on_HighScoreExit_pressed()
+
+
 func _on_AddScore_pressed():
 	$DisplayScore.visible = false 
 	$AddScore.visible = true 
 	$AddScore/SaveScore.visible = true
+	$AddScore/NameInput.grab_focus()
 
 func _on_Restart_pressed():
 	emit_signal("startgame", self)

@@ -72,6 +72,8 @@ func restart(current_scene):
 		_on_startvr(current_scene)
 	else:
 		enter_end_game_menu(current_scene)
+	get_node("/root/GameData").on_restart()
+
 
 func enter_end_game_menu(current_scene):
 	var end_menu = end_game_menu.instance()

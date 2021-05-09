@@ -2,6 +2,7 @@
 
 [ext_resource path="res://scenes/dog/dog.gd" type="Script" id=1]
 [ext_resource path="res://assets/dog.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/frisbee.glb" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -13,6 +14,20 @@ script = ExtResource( 1 )
 [node name="dog" parent="." instance=ExtResource( 2 )]
 transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.832013, 0 )
 
+[node name="Armature" parent="dog" index="0"]
+transform = Transform( 1, -6.70496e-17, -1.03652e-17, 6.70496e-17, 0.953319, 0.301964, -1.03652e-17, -0.301964, 0.953319, 1.69279e-16, 0.762364, -0.301079 )
+
+[node name="Skeleton" parent="dog/Armature" index="0"]
+bones/1/bound_children = [ NodePath("CaughtFrisbee") ]
+
+[node name="CaughtFrisbee" type="BoneAttachment" parent="dog/Armature/Skeleton" index="1"]
+transform = Transform( 1, 9.09495e-13, -1.66893e-06, -1.17285e-06, 0.711433, -0.702752, 1.18733e-06, 0.702753, 0.711434, 1.97587e-08, 0.0201099, 0.595482 )
+visible = false
+bone_name = "Head"
+
+[node name="frisbee" parent="dog/Armature/Skeleton/CaughtFrisbee" instance=ExtResource( 3 )]
+transform = Transform( 0.2, -1.51913e-07, 2.97213e-07, 5.62217e-13, 0.178086, 0.091024, -3.33787e-07, -0.0910242, 0.178086, 3.49717e-07, 0.503803, 0.288982 )
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 shape = SubResource( 1 )
 disabled = true
@@ -22,5 +37,6 @@ transform = Transform( 7.5, 0, 0, 0, 1, 0, 0, 0, 7.5, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="ActiveCandyArea"]
 shape = SubResource( 2 )
+[connection signal="animation_finished" from="dog/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="dog"]
