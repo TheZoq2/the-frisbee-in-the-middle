@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/Smoke30Frames_0.png" type="Texture" id=1]
+[ext_resource path="res://assets/OBJ_kenney_nature/campfire_planks.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://assets/OBJ_kenney_nature/campfire_stones.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/Fire.tres" type="Gradient" id=4]
+
+[sub_resource type="GradientTexture" id=1]
+gradient = ExtResource( 4 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.195122, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0788935 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+trail_divisor = 5
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 5.0
+initial_velocity_random = 1.0
+angular_velocity = 40.0
+angular_velocity_random = 1.0
+linear_accel = 4.0
+linear_accel_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale_random = 0.8
+scale_curve = SubResource( 3 )
+color_ramp = SubResource( 1 )
+hue_variation = -0.01
+hue_variation_random = 1.0
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 5
+particles_anim_loop = true
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=6]
+material = SubResource( 5 )
+
+[node name="FirePlace" type="Spatial"]
+
+[node name="campfire_stones" type="MeshInstance" parent="."]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+mesh = ExtResource( 3 )
+material/0 = null
+
+[node name="campfire_planks" type="MeshInstance" parent="."]
+transform = Transform( 2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0 )
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.210349, 0 )
+amount = 200
+lifetime = 0.5
+randomness = 1.0
+visibility_aabb = AABB( -0.256733, -0.351969, -0.256852, 0.513466, 0.703937, 0.513703 )
+local_coords = false
+draw_order = 2
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 6 )
