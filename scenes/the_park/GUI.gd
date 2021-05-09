@@ -40,13 +40,13 @@ func _input(_event):
 		if $GameMenu.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			
-			$GameMenu.set("visible", false)
+			$GameMenu.hide()
 			get_tree().set("paused", false)
 		
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			get_tree().set("paused", true)
-			$GameMenu.set("visible", true)
+			$GameMenu.show()
 #15. public methods                                             #
 
 #16. private methods                                            #
@@ -71,7 +71,7 @@ func _on_Catcher_frisbee_caught():
 
 func _on_ResumeButton_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$GameMenu.set("visible", false)
+	$GameMenu.hide()
 	get_tree().set("paused", false)
 
 
