@@ -19,9 +19,13 @@ var dog_score : int = 0
 var caught_frisbees : int = 0
 export var game_time : int = 20
 #11. onready variables                                          #
+var catch_sound = preload("res://assets/cash_register.ogg")
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
 onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
+onready var effect_player = get_node("../EffectsPlayer")
+onready var catch_animator = get_node("HUD/TextureRect/Panel/CatchAnimator")
+onready var dog_catch_animator = get_node("HUD/TextureRect2/Panel/DogCatchAnimator")
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
@@ -55,6 +59,10 @@ func _on_Catcher_frisbee_caught():
 	caught_frisbees += 1
 	number_label.text = str(caught_frisbees)
 	get_node("/root/GameData").current_score = caught_frisbees
+	effect_player.stream = catch_sound
+	effect_player.play()
+	catch_animator.play("Catch")
+	
 
 
 func _on_ResumeButton_pressed():
@@ -77,3 +85,4 @@ func _on_Timer_timeout():
 func _on_dog_dog_caught_frisbee():
 	dog_score += 1
 	dog_score_label.text = str(dog_score)
+	dog_catch_animator.play("Catch")
