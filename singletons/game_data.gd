@@ -24,6 +24,10 @@ export var game_time : int
 }
 """
 var highscore_data : Array = []
+
+export var max_num_treats : int = 5
+var remaining_treats: int = max_num_treats
+
 #11. onready variables                                          #
 #                                                               #
 #12. optional built-in virtual _init method                     #
@@ -45,6 +49,7 @@ func save_data(data : Array, path : String) -> void:
 func on_restart():
 	self.game_time = 60
 	self.current_score = 0
+	self.remaining_treats = max_num_treats
 
 func add_highscore(score_entry : Dictionary):
 	print("adding highscore")

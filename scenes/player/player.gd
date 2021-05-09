@@ -20,7 +20,6 @@ export var max_speed : float = 20.0
 export var gravity : float = -0.80
 export var jump_impulse : float =  20.0
 export var throw_impulse : float = 5.0
-export var max_num_treats : int = 5
 
 #09. public variables                                           #
 
@@ -29,7 +28,6 @@ export var max_num_treats : int = 5
 var input_direction : Vector3 = Vector3.ZERO
 var rotation_speed_factor : float = 5.0
 var velocity : Vector3 = Vector3.ZERO
-var remaining_treats: int = max_num_treats
 
 var treat_template = preload("res://scenes/treat.tscn")
 var throw_action_pressed = false
@@ -46,7 +44,7 @@ func _ready():
 	$Catcher.connect("frisbee_caught", get_node("../GUI"), "_on_Catcher_frisbee_caught")
 # warning-ignore:return_value_discarded
 	self.connect("update_treat_count", get_node("../GUI"), "_on_Player_update_treat_count")
-	emit_signal("update_treat_count", remaining_treats)
+	emit_signal("update_treat_count", get_node("/root/GameData").remaining_treats)
 	
 #14. remaining built-in virtual methods                         #
 func _input(event: InputEvent) -> void:
@@ -67,9 +65,9 @@ func throw_treat():
 	get_parent().add_child(treat)
 	var direction = -self.global_transform.basis.z * throw_impulse
 	treat.apply_central_impulse(direction)
-	remaining_treats -= 1
+	get_node("/root/GameData").remaining_treats -= 1
 	throw_action_pressed = false
-	emit_signal("update_treat_count", remaining_treats)
+	emit_signal("update_treat_count", get_node("/root/GameData").remaining_treats)
 
 func _physics_process(_delta: float) -> void:
 	#take input
@@ -93,7 +91,7 @@ func _physics_process(_delta: float) -> void:
 	# print(velocity)
 	velocity = move_and_slide(velocity, Vector3.UP, true,  4, 0.785398, false)
 	
-	if throw_action_pressed and remaining_treats > 0:
+	if throw_action_pressed and get_node("/root/GameData").remaining_treats > 0:
 		throw_treat()
 
 

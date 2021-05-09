@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/VR/ARVR_root.gd" type="Script" id=2]
 [ext_resource path="res://scenes/VR/controller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_left_hand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/godot-openvr/OpenVRAction.gdns" type="Script" id=5]
-[ext_resource path="res://addons/gui_in_vr/player/controller.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/VR/watch.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/VR/treat_band.tscn" type="PackedScene" id=7]
 
 [node name="ARVROrigin" type="ARVROrigin"]
 script = ExtResource( 2 )
@@ -14,14 +15,24 @@ script = ExtResource( 2 )
 far = 579.8
 
 [node name="ovr_right_hand" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.193462, 0, 0 )
 
 [node name="ovr_left_hand" parent="." instance=ExtResource( 4 )]
 
 [node name="right_controller" parent="." instance=ExtResource( 3 )]
 
+[node name="band_location" type="Spatial" parent="right_controller"]
+transform = Transform( 0.00980846, -0.999952, 0, 0.783688, 0.00768714, 0.621107, -0.621077, -0.0060921, 0.783726, -0.065, 0.073, 0.201 )
+
+[node name="treat_band" parent="right_controller/band_location" instance=ExtResource( 7 )]
+
 [node name="left_controller" parent="." instance=ExtResource( 3 )]
 controller_id = 2
+
+[node name="CSGCylinder2" type="Spatial" parent="left_controller"]
+transform = Transform( -4.37114e-08, 1, 0, -0.779841, -3.40879e-08, 0.625978, 0.625978, 2.73624e-08, 0.779841, 0.0700302, 0.0721055, 0.197735 )
+
+[node name="CSGMesh" parent="left_controller/CSGCylinder2" instance=ExtResource( 6 )]
+transform = Transform( 1, 3.55271e-15, 0, -1.06581e-14, 1, 5.32907e-15, 0, 1.77636e-15, 1, 0.000146344, 0.000270814, 0.000182301 )
 
 [node name="right_catch_handler" type="Node" parent="."]
 script = ExtResource( 5 )
@@ -33,10 +44,19 @@ script = ExtResource( 5 )
 pressed_action = "/actions/godot/in/trigger"
 on_hand = 2
 
-[node name="Controller2" parent="." instance=ExtResource( 6 )]
-controller_id = 2
+[node name="right_by_handler" type="Node" parent="."]
+script = ExtResource( 5 )
+pressed_action = "/actions/godot/in/button_by"
+on_hand = 1
 
-[node name="Controller" parent="." instance=ExtResource( 6 )]
+[node name="left_by_handler" type="Node" parent="."]
+script = ExtResource( 5 )
+pressed_action = "/actions/godot/in/button_by"
+on_hand = 2
 
 [connection signal="pressed" from="right_catch_handler" to="right_controller" method="_on_catch_pressed"]
 [connection signal="pressed" from="left_catch_handler" to="left_controller" method="_on_catch_pressed"]
+[connection signal="pressed" from="right_by_handler" to="right_controller" method="_on_treat_pressed"]
+[connection signal="released" from="right_by_handler" to="right_controller" method="_on_treat_release"]
+[connection signal="pressed" from="left_by_handler" to="left_controller" method="_on_treat_pressed"]
+[connection signal="released" from="left_by_handler" to="left_controller" method="_on_treat_release"]
