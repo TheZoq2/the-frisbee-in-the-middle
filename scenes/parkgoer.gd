@@ -15,16 +15,42 @@ var is_throwing = false
 var has_thrown = false
 var animation_position_to_throw = 1.0
 
+# TODO: Adjust these for non-VR 
+var player_too_close;
+var player_too_far;
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+
+	if get_node("/root/GameState").is_vr:
+		player_too_close = 5;
+		player_too_far = 10;
+	else:
+		player_too_close = 0;
+		player_too_far = 50;
+
 	self.new_velocity()
 	self.throw_frisbee()
 	$person/AnimationPlayer.play("walk")
 
 func new_velocity():
 	var move_angle = randf() * 2*PI
+
+	var player = get_parent().player;
+	if player:
+		var player_pos = player.get_position();
+		var player_direction = (player_pos - self.global_transform.origin);
+
+		var distance = player_direction.length()
+		player_direction = player_direction.normalized()
+
+		if distance > player_too_far:
+			move_angle = atan2(player_direction.x, player_direction.z);
+		elif distance < player_too_close:
+			move_angle = atan2(-player_direction.x, -player_direction.z);
+
 	self.rotation = Vector3(0, move_angle, 0)
 
 	self.direction = self.transform.basis.z
@@ -39,6 +65,7 @@ func throw_frisbee():
 	var frisbee = frisbee_template.instance()
 	frisbee.transform.origin = self.get_node("frisbee_origin").global_transform.origin
 	get_parent().call_deferred("add_child", frisbee)
+	$AudioStreamPlayer3D.play()
 	self.next_frisbee = rand_range(1, 5)
 	self.has_thrown = true
 

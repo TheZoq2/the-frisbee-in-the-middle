@@ -23,14 +23,18 @@ func _ready():
 	connect("body_entered", self, "on_body_entered");
 
 func _physics_process(delta):
-	var startPoint: Vector3 = catcher.global_transform.origin \
-		+ player_height_offset * Vector3.UP
+	var startPoint: Vector3 = catcher.get_global_transform().origin + player_height_offset * Vector3.UP
 	var endPoint: Vector3 = global_transform.origin
 	var length: float = startPoint.distance_to(endPoint)
 	stretch_arm.scale.z = length
 	stretch_arm.global_transform.origin = 0.5 * (startPoint + endPoint)
 	if stretch_arm.global_transform.origin != endPoint:
-		stretch_arm.look_at(endPoint, Vector3.UP)
+		var dot: float = (endPoint - stretch_arm.global_transform.origin) \
+			.normalized().dot(Vector3.UP)
+		if dot == 1 || dot == 0: # Straight up or down
+			stretch_arm.look_at(endPoint, Vector3.FORWARD)
+		else:
+			stretch_arm.look_at(endPoint, Vector3.UP) #generates an error if direction between node origin and target is aligned with UP
 
 	if should_switch_parent:
 		# When the player moves fast away from the target, the target can't be
@@ -69,3 +73,7 @@ func set_target_and_catcher(new_target: Frisbee, new_catcher):
 	catcher = new_catcher
 	global_transform.origin = catcher.global_transform.origin \
 		+ player_height_offset * Vector3.UP
+
+func _on_children_despawn():
+	print(name, " is awaiting termination")
+	queue_free()

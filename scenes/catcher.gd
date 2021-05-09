@@ -2,8 +2,10 @@ extends Area
 class_name Catcher
 
 signal frisbee_caught
+signal children_despawn
 
 var catch_hand_template = preload("res://scenes/catch_hand.tscn")
+var vr_catch_pressed = false
 
 func _process(_delta):
 	var closest_frisbee: Frisbee = null
@@ -18,8 +20,30 @@ func _process(_delta):
 	if closest_frisbee != null:
 		if Input.is_action_just_pressed("catch"):
 			closest_frisbee.is_caught = true
+			closest_frisbee.stop_sound()
 			var catch_hand = catch_hand_template.instance()
+			connect("children_despawn", catch_hand, "_on_children_despawn")
 			get_tree().get_root().add_child(catch_hand)
 			catch_hand.set_target_and_catcher(closest_frisbee, self)
+		elif vr_catch_pressed:
+			closest_frisbee.queue_free()
 		else:
 			closest_frisbee.highlight_this_frame()
+	vr_catch_pressed = false
+
+
+func _on_Catcher_body_exited(body):
+	if body is Frisbee:
+		body.play_sound()
+
+
+func _on_Catcher_body_entered(body):
+	if body is Frisbee:
+		body.stop_sound()
+
+
+func _on_vr_catch_input():
+	vr_catch_pressed = true
+
+func _exit_tree():
+	emit_signal("children_despawn")

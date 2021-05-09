@@ -17,6 +17,8 @@ extends Node
 #10. private variables                                          #
 var main_menu : PackedScene = preload("res://scenes/menues/MainMenu.tscn")
 var main : PackedScene = preload("res://scenes/the_park/the_park.tscn")
+var end_game_menu : PackedScene = preload("res://scenes/menues/end_game_menu.tscn")
+var is_vr : bool = false
 #11. onready variables                                          #
 #                                                               #
 #12. optional built-in virtual _init method                     #
@@ -32,10 +34,10 @@ func _ready():
 
 func _on_startgame(current_scene):
 	current_scene.queue_free()
-	get_tree().paused = false
 	var main_scene = main.instance()
-	main_scene.is_vr = false
+	is_vr = false
 	add_child(main_scene)
+	get_tree().paused = false
 
 func _on_startvr(current_scene):
 	var interface = ARVRServer.find_interface("OpenVR")
@@ -53,14 +55,60 @@ func _on_startvr(current_scene):
 		Engine.iterations_per_second = 90
 
 		var main_scene = main.instance()
-		main_scene.is_vr = true
+		is_vr = true
 		current_scene.queue_free()
 		add_child(main_scene)
+		get_tree().paused = false
 	else:
 		print("OpenVR did not start correctly")
 
 func game_over():
 	get_tree().paused = true
-	var current_scene = get_child(0)
-	_on_startgame(current_scene)
+	var current_scene = get_child(1)
+	restart(current_scene)
+	
+func restart(current_scene):
+	if is_vr:
+		_on_startvr(current_scene)
+	else:
+		enter_end_game_menu(current_scene)
+
+func enter_end_game_menu(current_scene):
+	var end_menu = end_game_menu.instance()
+	current_scene.queue_free()
+	get_tree().paused = false
+	add_child(end_menu)
+	
+		#_on_startgame(current_scene)
 #################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

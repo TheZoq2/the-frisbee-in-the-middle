@@ -5,75 +5,67 @@
 #class_name %CLASSNAME%
 #03. extends                                                    #
 
-extends CanvasLayer
+extends Node
 
 #04. # docstring                                                #
 #                                                               #
 #05. signals                                                    #
 #06. enums                                                      #
 #07. constants                                                  #
+const HIGHSCORE : String = "user://high_score.json"
 #08. exported variables                                         #
 #09. public variables                                           #
 #10. private variables                                          #
-var dog_score : int = 0 
-var caught_frisbees : int = 0
-export var game_time : int = 20
+var current_score : int = 0
+"""
+{
+	score : username
+}
+"""
+var highscore_data : Array = []
 #11. onready variables                                          #
-onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
-onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
-onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
-	pause_mode = Node.PAUSE_MODE_PROCESS
-
+	highscore_data = self._get_highscore_data()
 #14. remaining built-in virtual methods                         #
-func _input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		if $GameMenu.visible:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			
-			$GameMenu.set("visible", false)
-			get_tree().set("paused", false)
-		
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			get_tree().set("paused", true)
-			$GameMenu.set("visible", true)
 #15. public methods                                             #
+func save_data(data : Array, path : String) -> void:
+	print("saving data")
+	var file : File = File.new()
+	var result = file.open(path, File.WRITE)
+	if result == OK:
+		file.store_line(to_json(data))
+	file.close()
 
+func add_highscore(score_entry : Dictionary):
+	print("adding highscore")
+	if highscore_data.empty():
+		highscore_data.push_back(score_entry)
+	elif int(highscore_data[0].keys()[0]) < score_entry.keys()[0]:
+		highscore_data.push_front(score_entry)
+	else:
+		highscore_data.push_back(score_entry)
+		highscore_data.sort_custom(self, "custom_sort")
+		print("add highscore: ", highscore_data)
+	save_data(highscore_data, HIGHSCORE)
 #16. private methods                                            #
 
+func _get_highscore_data() -> Array:
+	var data = []
+	var file : File = File.new()
+	if not file.file_exists(HIGHSCORE):
+		save_data(highscore_data, HIGHSCORE)
+	var result = file.open(HIGHSCORE, File.READ)
+	if result == OK:
+		var file_content = file.get_as_text()
+		data = parse_json(file_content)
+	#print(data)
+	file.close()
+	return data
 
 
+func custom_sort(a : Dictionary, b : Dictionary):
+	return int(a.keys()[0]) > int(b.keys()[0])
 #################################################################
-
-
-func _on_Catcher_frisbee_caught():
-	#print("# I cought one!!! ")
-	caught_frisbees += 1
-	number_label.text = str(caught_frisbees)
-	get_node("/root/GameData").current_score = caught_frisbees
-
-
-func _on_ResumeButton_pressed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$GameMenu.set("visible", false)
-	get_tree().set("paused", false)
-
-
-func _on_QuitGameButton_pressed():
-	get_tree().quit()
-
-
-func _on_Timer_timeout():
-	game_time -= 1
-	game_time_label.text = str(game_time)
-	if game_time == 0:
-		get_node("/root/GameState").game_over()
-
-
-func _on_dog_dog_caught_frisbee():
-	dog_score += 1
-	dog_score_label.text = str(dog_score)

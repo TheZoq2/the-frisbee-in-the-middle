@@ -27,6 +27,7 @@ texture = ExtResource( 4 )
 expand = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -172,25 +173,38 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="InfoScreen" type="TextureRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 7 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="InfoScreen"]
+self_modulate = Color( 1, 1, 1, 0.341176 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Label2" type="Label" parent="InfoScreen"]
-anchor_right = 1.0
-margin_bottom = 35.0
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -373.5
+margin_right = 373.5
+margin_bottom = 390.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "
-Game Rules
+                                            Game Rules
 
-Your goal is to catch as many frisbees as you can
-before the timer runs out.
+Your goal is to catch as many frisbees
+ as you can before the timer runs out.
 
-Good luck!"
-align = 1
+mouse controls rotation and camera
+movment by WASD
+you catch frisbees with space
+
+                                            Good luck!"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -198,13 +212,12 @@ __meta__ = {
 
 [node name="OKButton" type="TextureButton" parent="InfoScreen"]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 margin_left = -159.5
-margin_top = -126.5
+margin_top = -253.0
 margin_right = 159.5
-margin_bottom = 126.5
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 2 )
 texture_hover = ExtResource( 3 )

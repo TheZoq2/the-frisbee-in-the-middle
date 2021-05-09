@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/parkgoer.gd" type="Script" id=1]
 [ext_resource path="res://assets/person.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/frisbee_throw.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.504259
@@ -21,5 +22,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175156, 1.20558, 0.670344 )
 
 [node name="person" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.0116426, 0 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
 
 [editable path="person"]
