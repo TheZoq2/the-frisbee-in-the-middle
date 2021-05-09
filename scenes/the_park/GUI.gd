@@ -19,11 +19,12 @@ var dog_score : int = 0
 var caught_frisbees : int = 0
 #11. onready variables                                          #
 var catch_sound = preload("res://assets/cash_register.ogg")
+var warning_sound = preload("res://assets/siren.ogg")
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
 onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
 onready var treats_label = get_node("HUD/TreatCounter/TreatCountLabel")
-onready var effect_player = get_node("../EffectsPlayer")
+onready var effect_player : AudioStreamPlayer = get_node("../EffectsPlayer")
 onready var catch_animator = get_node("HUD/TextureRect/Panel/CatchAnimator")
 onready var dog_catch_animator = get_node("HUD/TextureRect2/Panel/DogCatchAnimator")
 #                                                               #
@@ -58,9 +59,12 @@ func _on_Catcher_frisbee_caught():
 	#print("# I cought one!!! ")
 	get_node("/root/GameData").current_score += 1
 	number_label.text = str(get_node("/root/GameData").current_score)
+	catch_animator.play("Catch")
+	
+	if effect_player.stream == warning_sound and effect_player.playing:
+		return
 	effect_player.stream = catch_sound
 	effect_player.play()
-	catch_animator.play("Catch")
 	
 
 
@@ -77,6 +81,13 @@ func _on_QuitGameButton_pressed():
 func _on_Timer_timeout():
 	get_node("/root/GameData").game_time -= 1
 	game_time_label.text = str(get_node("/root/GameData").game_time)
+
+	if get_node("/root/GameData").game_time == 10:
+		print("shuld play warning")
+		effect_player.stop()
+		effect_player.stream = warning_sound
+		effect_player.play()
+
 	if get_node("/root/GameData").game_time == 0:
 		get_node("/root/GameState").game_over()
 
