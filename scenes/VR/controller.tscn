@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/catcher.gd" type="Script" id=1]
 [ext_resource path="res://scenes/VR/controller.gd" type="Script" id=2]
-[ext_resource path="res://scenes/VR/watch.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.1
@@ -24,8 +23,3 @@ shape = SubResource( 1 )
 [node name="CSGSphere" type="CSGSphere" parent="Area"]
 radius = 0.1
 material = SubResource( 2 )
-
-[node name="CSGCylinder" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 1, 0, -0.779841, -3.40879e-08, 0.625978, 0.625978, 2.73624e-08, 0.779841, 0.0700302, 0.0721055, 0.197735 )
-
-[node name="CSGMesh" parent="CSGCylinder" instance=ExtResource( 3 )]
