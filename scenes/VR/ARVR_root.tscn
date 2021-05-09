@@ -46,12 +46,12 @@ on_hand = 2
 
 [node name="right_by_handler" type="Node" parent="."]
 script = ExtResource( 5 )
-pressed_action = "/actions/godot/in/button_by"
+pressed_action = "/actions/godot/in/button_ax"
 on_hand = 1
 
 [node name="left_by_handler" type="Node" parent="."]
 script = ExtResource( 5 )
-pressed_action = "/actions/godot/in/button_by"
+pressed_action = "/actions/godot/in/button_ax"
 on_hand = 2
 
 [connection signal="pressed" from="right_catch_handler" to="right_controller" method="_on_catch_pressed"]
