@@ -15,6 +15,9 @@ var jumping = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var move_angle = randf() * 2*PI
+	self.rotation = Vector3(0, move_angle, 0)
+	_velocity = -self.transform.basis.z
 	$dog/AnimationPlayer.play("walk")
 
 func _physics_process(delta: float) -> void:
@@ -41,7 +44,7 @@ func find_closest_frisbee() -> Frisbee:
 	var frisbees = get_tree().get_nodes_in_group("frisbee")
 	if frisbees == null||frisbees.size() == 0:
 		return null
-		
+
 	var closest_frisbee: Frisbee = null
 	var closest_distance: float;
 	for body in frisbees:
