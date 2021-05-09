@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_right_hand.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/VR/ARVR_root.gd" type="Script" id=2]
 [ext_resource path="res://scenes/VR/controller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://addons/godot-openvr/scenes/ovr_left_hand.tscn" type="PackedScene" id=4]
 [ext_resource path="res://addons/godot-openvr/OpenVRAction.gdns" type="Script" id=5]
-[ext_resource path="res://addons/gui_in_vr/player/controller.tscn" type="PackedScene" id=6]
 
 [node name="ARVROrigin" type="ARVROrigin"]
 script = ExtResource( 2 )
@@ -33,10 +32,19 @@ script = ExtResource( 5 )
 pressed_action = "/actions/godot/in/trigger"
 on_hand = 2
 
-[node name="Controller2" parent="." instance=ExtResource( 6 )]
-controller_id = 2
+[node name="right_by_handler" type="Node" parent="."]
+script = ExtResource( 5 )
+pressed_action = "/actions/godot/in/button_by"
+on_hand = 1
 
-[node name="Controller" parent="." instance=ExtResource( 6 )]
+[node name="left_by_handler" type="Node" parent="."]
+script = ExtResource( 5 )
+pressed_action = "/actions/godot/in/button_by"
+on_hand = 2
 
 [connection signal="pressed" from="right_catch_handler" to="right_controller" method="_on_catch_pressed"]
 [connection signal="pressed" from="left_catch_handler" to="left_controller" method="_on_catch_pressed"]
+[connection signal="pressed" from="right_by_handler" to="right_controller" method="_on_treat_pressed"]
+[connection signal="released" from="right_by_handler" to="right_controller" method="_on_treat_release"]
+[connection signal="pressed" from="left_by_handler" to="left_controller" method="_on_treat_pressed"]
+[connection signal="released" from="left_by_handler" to="left_controller" method="_on_treat_release"]
