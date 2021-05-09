@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/Outline.material" type="Material" id=4]
 [ext_resource path="res://assets/frisbee_passing_by.ogg" type="AudioStream" id=5]
 
-[sub_resource type="CylinderShape" id=1]
+[sub_resource type="CylinderShape" id=2]
 radius = 1.09812
 height = 0.135414
 
@@ -27,7 +27,7 @@ material/0 = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="DespawnTimer" type="Timer" parent="."]
 one_shot = true

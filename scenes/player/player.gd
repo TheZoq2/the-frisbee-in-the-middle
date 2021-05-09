@@ -10,6 +10,8 @@ extends KinematicBody
 #04. # docstring                                                #
 #                                                               #
 #05. signals                                                    #
+signal update_treat_count
+
 #06. enums                                                      #
 #07. constants                                                  #
 #08. exported variables                                         #
@@ -17,13 +19,20 @@ export var move_speed : float = 10.0
 export var max_speed : float = 20.0
 export var gravity : float = -0.80
 export var jump_impulse : float =  20.0
-
+export var throw_impulse : float = 5.0
+export var max_num_treats : int = 5
 
 #09. public variables                                           #
+
+
 #10. private variables                                          #
 var input_direction : Vector3 = Vector3.ZERO
 var rotation_speed_factor : float = 5.0
 var velocity : Vector3 = Vector3.ZERO
+var remaining_treats: int = max_num_treats
+
+var treat_template = preload("res://scenes/treat.tscn")
+var throw_action_pressed = false
 
 
 
@@ -34,6 +43,9 @@ var velocity : Vector3 = Vector3.ZERO
 #13. built-in virtual _ready method                             #
 func _ready():
 	$Catcher.connect("frisbee_caught", get_node("../GUI"), "_on_Catcher_frisbee_caught")
+	self.connect("update_treat_count", get_node("../GUI"), "_on_Player_update_treat_count")
+	emit_signal("update_treat_count", remaining_treats)
+	
 #14. remaining built-in virtual methods                         #
 func _input(event: InputEvent) -> void:
 
@@ -42,8 +54,20 @@ func _input(event: InputEvent) -> void:
 		event.is_action_pressed("Jump"),
 		Input.get_action_strength("Move_Backwards") - Input.get_action_strength("Move_Forward")
 	)
- 
 
+	if event.is_action_pressed("throw"):
+		throw_action_pressed = true
+
+ 
+func throw_treat():
+	var treat = treat_template.instance()
+	treat.transform.origin = self.get_node("TreatOrigin").global_transform.origin
+	get_parent().add_child(treat)
+	var direction = -self.global_transform.basis.z * throw_impulse
+	treat.apply_central_impulse(direction)
+	remaining_treats -= 1
+	throw_action_pressed = false
+	emit_signal("update_treat_count", remaining_treats)
 
 func _physics_process(_delta: float) -> void:
 	#take input
@@ -66,6 +90,9 @@ func _physics_process(_delta: float) -> void:
 
 	# print(velocity)
 	velocity = move_and_slide(velocity, Vector3.UP, true,  4, 0.785398, false)
+	
+	if throw_action_pressed and remaining_treats > 0:
+		throw_treat()
 
 
 

@@ -33,8 +33,10 @@ func _physics_process(delta):
 			.normalized().dot(Vector3.UP)
 		if dot == 1 || dot == 0: # Straight up or down
 			stretch_arm.look_at(endPoint, Vector3.FORWARD)
+			look_at(2 * endPoint - startPoint, Vector3.FORWARD)
 		else:
 			stretch_arm.look_at(endPoint, Vector3.UP) #generates an error if direction between node origin and target is aligned with UP
+			look_at(2 * endPoint - startPoint, Vector3.UP)
 
 	if should_switch_parent:
 		# When the player moves fast away from the target, the target can't be
@@ -47,11 +49,9 @@ func _physics_process(delta):
 		should_switch_parent = false
 
 	if !has_grabbed: # Go to target
-		look_at(target.global_transform.origin, Vector3.UP);
 		global_transform.origin = lerp(global_transform.origin,
 			target.global_transform.origin, move_speed * delta)
 	else: # Bring target home
-		look_at(2 * global_transform.origin - startPoint, Vector3.UP);
 		global_transform.origin = lerp(global_transform.origin, startPoint,
 			move_speed * delta)
 

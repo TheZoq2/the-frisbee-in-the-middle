@@ -22,6 +22,7 @@ var catch_sound = preload("res://assets/cash_register.ogg")
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
 onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
+onready var treats_label = get_node("HUD/TreatCounter/TreatCountLabel")
 onready var effect_player = get_node("../EffectsPlayer")
 onready var catch_animator = get_node("HUD/TextureRect/Panel/CatchAnimator")
 onready var dog_catch_animator = get_node("HUD/TextureRect2/Panel/DogCatchAnimator")
@@ -84,3 +85,8 @@ func _on_dog_dog_caught_frisbee():
 	dog_score += 1
 	dog_score_label.text = str(dog_score)
 	dog_catch_animator.play("Catch")
+
+func _on_Player_update_treat_count(remaining_treats):
+	treats_label.text = str(remaining_treats)	
+
+

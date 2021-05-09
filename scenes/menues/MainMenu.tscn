@@ -206,7 +206,7 @@ Your goal is to catch as many frisbees
 mouse controls rotation and camera
 movment by WASD
 you catch frisbees with space
-
+throw dog treats with q
                                             Good luck!"
 valign = 1
 __meta__ = {

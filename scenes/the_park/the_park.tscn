@@ -81,6 +81,8 @@ __meta__ = {
 
 [node name="TextureRect" type="TextureRect" parent="GUI/HUD"]
 anchor_right = 1.0
+margin_left = -178.0
+margin_right = -178.0
 margin_bottom = 43.0
 texture = ExtResource( 5 )
 expand = true
@@ -139,7 +141,8 @@ anims/Catch = ExtResource( 2 )
 
 [node name="TextureRect2" type="TextureRect" parent="GUI/HUD"]
 anchor_right = 1.0
-margin_left = 620.0
+margin_left = 442.0
+margin_right = -178.0
 margin_bottom = 43.0
 texture = ExtResource( 5 )
 expand = true
@@ -206,6 +209,7 @@ margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Time Left"
 valign = 1
 __meta__ = {
@@ -219,7 +223,43 @@ margin_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "60"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TreatCounter" type="HBoxContainer" parent="GUI/HUD"]
+margin_left = 790.0
+margin_right = 1020.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="GUI/HUD/TreatCounter"]
+margin_right = 123.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Treats Left"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TreatCountLabel" type="Label" parent="GUI/HUD/TreatCounter"]
+margin_left = 127.0
+margin_right = 230.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -230,7 +270,6 @@ visible = false
 
 [node name="dog" parent="." instance=ExtResource( 8 )]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.81398, 0.796733, 0 )
-speed = 3
 rotation_factor = 7.5
 
 [node name="Timer" type="Timer" parent="."]
