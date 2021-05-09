@@ -19,9 +19,6 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.8
 [node name="Armature" parent="dog" index="0"]
 transform = Transform( 1, -6.70496e-17, -1.03652e-17, 6.70496e-17, 0.953319, 0.301964, -1.03652e-17, -0.301964, 0.953319, 1.69279e-16, 0.762364, -0.301079 )
 
-[node name="Skeleton" parent="dog/Armature" index="0"]
-bones/1/bound_children = [ NodePath("CaughtFrisbee") ]
-
 [node name="CaughtFrisbee" type="BoneAttachment" parent="dog/Armature/Skeleton" index="1"]
 transform = Transform( 1, 7.95808e-13, -1.66893e-06, -1.17285e-06, 0.711433, -0.702752, 1.18733e-06, 0.702753, 0.711434, 1.97588e-08, 0.0201099, 0.595482 )
 bone_name = "Head"

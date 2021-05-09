@@ -16,6 +16,7 @@ func _ready():
 	else:
 		player = normal_player.instance();
 		self.add_child(player)
+	$PenguinAnimator.play("move")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
