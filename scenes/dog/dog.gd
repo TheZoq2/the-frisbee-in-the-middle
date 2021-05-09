@@ -15,6 +15,9 @@ var jumping = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var move_angle = randf() * 2*PI
+	self.rotation = Vector3(0, move_angle, 0)
+	_velocity = -self.transform.basis.z
 	$dog/AnimationPlayer.play("walk")
 
 func _physics_process(delta: float) -> void:
@@ -27,6 +30,7 @@ func _physics_process(delta: float) -> void:
 			target = find_closest_frisbee()
 			emit_signal("dog_caught_frisbee")
 			$dog/AnimationPlayer.play("jump")
+			$dog/Armature/Skeleton/CaughtFrisbee.show()
 			jumping = true
 			return
 		var new_dog_transform = transform.looking_at(target.global_transform.origin, Vector3.UP)
@@ -40,7 +44,7 @@ func find_closest_frisbee() -> Frisbee:
 	var frisbees = get_tree().get_nodes_in_group("frisbee")
 	if frisbees == null||frisbees.size() == 0:
 		return null
-		
+
 	var closest_frisbee: Frisbee = null
 	var closest_distance: float;
 	for body in frisbees:
@@ -56,3 +60,7 @@ func find_closest_frisbee() -> Frisbee:
 func _process(_delta):
 	if not $dog/AnimationPlayer.is_playing():
 		$dog/AnimationPlayer.play("walk")
+
+func _on_AnimationPlayer_animation_finished(anim_name: String):
+	if anim_name == "jump":
+		$dog/Armature/Skeleton/CaughtFrisbee.hide()

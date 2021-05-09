@@ -5,9 +5,9 @@ extends KinematicBody
 # var a = 2
 # var b = "text"
 
-var next_frisbee = 0;
-var next_direction_change = 0;
-var direction = Vector3(0, 0, 0);
+var next_frisbee = 0
+var next_direction_change = 0
+var direction = Vector3(0, 0, 0)
 
 var frisbee_template = preload("res://scenes/frisbee.tscn")
 
@@ -31,8 +31,8 @@ func _ready():
 		player_too_close = 0;
 		player_too_far = 50;
 
+	self.next_frisbee = rand_range(1, 5)
 	self.new_velocity()
-	self.throw_frisbee()
 	$person/AnimationPlayer.play("walk")
 
 func new_velocity():

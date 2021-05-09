@@ -76,4 +76,5 @@ func set_target_and_catcher(new_target: Frisbee, new_catcher):
 
 func _on_children_despawn():
 	print(name, " is awaiting termination")
+	stretch_arm.queue_free()
 	queue_free()
