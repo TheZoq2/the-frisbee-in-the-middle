@@ -25,19 +25,6 @@ func _ready():
 
 func _physics_process(delta):
 	var startPoint: Vector3 = catcher.get_global_transform().origin + player_height_offset * Vector3.UP
-	var endPoint: Vector3 = global_transform.origin
-	var length: float = startPoint.distance_to(endPoint)
-	stretch_arm.scale.z = length
-	stretch_arm.global_transform.origin = 0.5 * (startPoint + endPoint)
-	if stretch_arm.global_transform.origin != endPoint:
-		var dot: float = (endPoint - stretch_arm.global_transform.origin) \
-			.normalized().dot(Vector3.UP)
-		if dot == 1 || dot == 0: # Straight up or down
-			stretch_arm.look_at(endPoint, Vector3.FORWARD)
-			look_at(2 * endPoint - startPoint, Vector3.FORWARD)
-		else:
-			stretch_arm.look_at(endPoint, Vector3.UP) #generates an error if direction between node origin and target is aligned with UP
-			look_at(2 * endPoint - startPoint, Vector3.UP)
 
 	if should_switch_parent:
 		# When the player moves fast away from the target, the target can't be
@@ -61,6 +48,21 @@ func _physics_process(delta):
 				catcher.emit_signal("frisbee_caught")
 				stretch_arm.queue_free()
 				queue_free()
+				return
+
+	var endPoint: Vector3 = global_transform.origin
+	var length: float = startPoint.distance_to(endPoint)
+	stretch_arm.scale.z = length
+	stretch_arm.global_transform.origin = 0.5 * (startPoint + endPoint)
+	if stretch_arm.global_transform.origin != endPoint:
+		var dot: float = (endPoint - stretch_arm.global_transform.origin) \
+			.normalized().dot(Vector3.UP)
+		if dot == 1 || dot == 0: # Straight up or down
+			stretch_arm.look_at(endPoint, Vector3.FORWARD)
+			look_at(2 * endPoint - startPoint, Vector3.FORWARD)
+		else:
+			stretch_arm.look_at(endPoint, Vector3.UP) #generates an error if direction between node origin and target is aligned with UP
+			look_at(2 * endPoint - startPoint, Vector3.UP)
 
 func on_body_entered(body: PhysicsBody):
 	if body == target: # Grabbed target
