@@ -44,6 +44,7 @@ func _ready():
 func _on_AddScore_pressed():
 	$DisplayScore.visible = false 
 	$AddScore.visible = true 
+	$AddScore/SaveScore.visible = true
 
 func _on_Restart_pressed():
 	emit_signal("startgame", self)
@@ -59,10 +60,13 @@ func _on_SaveScore_pressed():
 	get_node("/root/GameData").add_highscore(score_entry)
 	show_highscore()
 
+
 func show_highscore():
 	$AddScore.visible = false
 	$HighScore.visible = true
+	$HighScoreExit.visible = true
 	refresh_highscore()
+
 
 func refresh_highscore():
 	$HighScore.clear()
@@ -78,4 +82,8 @@ func refresh_highscore():
 			break
 
 
-
+func _on_HighScoreExit_pressed():
+	$HighScore.visible = true
+	$HighScoreExit.visible = false
+	$DisplayScore.visible = true
+	$AddScore/SaveScore.visible = false

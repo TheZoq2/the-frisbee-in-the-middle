@@ -42,7 +42,7 @@ func add_highscore(score_entry : Dictionary):
 	print("adding highscore")
 	if highscore_data.empty():
 		highscore_data.push_back(score_entry)
-	elif highscore_data[0].keys()[0] < score_entry.keys()[0]:
+	elif int(highscore_data[0].keys()[0]) < score_entry.keys()[0]:
 		highscore_data.push_front(score_entry)
 	else:
 		highscore_data.push_back(score_entry)
@@ -64,5 +64,5 @@ func _get_highscore_data() -> Array:
 
 
 func custom_sort(a : Dictionary, b : Dictionary):
-	return a.keys()[0] > b.keys()[0]
+	return int(a.keys()[0]) > int(b.keys()[0])
 #################################################################

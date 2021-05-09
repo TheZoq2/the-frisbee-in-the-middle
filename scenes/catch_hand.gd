@@ -23,8 +23,7 @@ func _ready():
 	connect("body_entered", self, "on_body_entered");
 
 func _physics_process(delta):
-	var startPoint: Vector3 = catcher.global_transform.origin \
-		+ player_height_offset * Vector3.UP
+	var startPoint: Vector3 = catcher.get_global_transform().origin + player_height_offset * Vector3.UP
 	var endPoint: Vector3 = global_transform.origin
 	var length: float = startPoint.distance_to(endPoint)
 	stretch_arm.scale.z = length

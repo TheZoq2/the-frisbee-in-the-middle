@@ -34,10 +34,10 @@ func _ready():
 
 func _on_startgame(current_scene):
 	current_scene.queue_free()
-	get_tree().paused = false
 	var main_scene = main.instance()
 	is_vr = false
 	add_child(main_scene)
+	get_tree().paused = false
 
 func _on_startvr(current_scene):
 	var interface = ARVRServer.find_interface("OpenVR")
@@ -64,7 +64,7 @@ func _on_startvr(current_scene):
 
 func game_over():
 	get_tree().paused = true
-	var current_scene = get_child(0)
+	var current_scene = get_child(1)
 	restart(current_scene)
 	
 func restart(current_scene):

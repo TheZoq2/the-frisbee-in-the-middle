@@ -15,11 +15,13 @@ extends CanvasLayer
 #08. exported variables                                         #
 #09. public variables                                           #
 #10. private variables                                          #
+var dog_score : int = 0 
 var caught_frisbees : int = 0
 export var game_time : int = 20
 #11. onready variables                                          #
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
+onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
@@ -70,3 +72,8 @@ func _on_Timer_timeout():
 	game_time_label.text = str(game_time)
 	if game_time == 0:
 		get_node("/root/GameState").game_over()
+
+
+func _on_dog_dog_caught_frisbee():
+	dog_score += 1
+	dog_score_label.text = str(dog_score)
