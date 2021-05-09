@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
 [ext_resource path="res://resources/the_parkCatch.tres" type="Animation" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/Penguin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/dog/dog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://default_env.tres" type="Environment" id=10]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Kenney Bold.ttf"
@@ -53,7 +54,7 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1029, 0 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.299524, 0.954089, 0, -0.954089, 0.299524, 0, 82, 66 )
+transform = Transform( 1, 0, 0, 0, -0.780627, 0.624998, 0, -0.624998, -0.780627, 0, 11.6479, 0.0749454 )
 shadow_enabled = true
 
 [node name="parkgoer" parent="." instance=ExtResource( 3 )]
@@ -284,6 +285,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.2159, -0.231869, 31.8225 )
 [node name="PenguinAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Penguin")
 anims/move = SubResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 10 )
 
 [connection signal="dog_caught_frisbee" from="dog" to="GUI" method="_on_dog_dog_caught_frisbee"]
 [connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]
