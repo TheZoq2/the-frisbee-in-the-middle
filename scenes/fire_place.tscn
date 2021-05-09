@@ -9,7 +9,7 @@
 gradient = ExtResource( 4 )
 
 [sub_resource type="Curve" id=2]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.195122, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0788935 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0548781, 0.993852 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0788935 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=3]
 curve = SubResource( 2 )
@@ -17,15 +17,15 @@ curve = SubResource( 2 )
 [sub_resource type="ParticlesMaterial" id=4]
 trail_divisor = 5
 emission_shape = 1
-emission_sphere_radius = 0.4
-direction = Vector3( 0, 1, 0 )
+emission_sphere_radius = 0.3
+direction = Vector3( 0, 0.5, 0 )
 spread = 0.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
 initial_velocity_random = 1.0
 angular_velocity = 40.0
 angular_velocity_random = 1.0
-linear_accel = 4.0
+linear_accel = 2.0
 linear_accel_random = 1.0
 angle = 360.0
 angle_random = 1.0
@@ -66,8 +66,8 @@ material/0 = null
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.210349, 0 )
-amount = 200
-lifetime = 0.5
+amount = 300
+lifetime = 0.6
 randomness = 1.0
 visibility_aabb = AABB( -0.256733, -0.351969, -0.256852, 0.513466, 0.703937, 0.513703 )
 local_coords = false

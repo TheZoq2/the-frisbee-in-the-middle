@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
 [ext_resource path="res://resources/the_parkCatch.tres" type="Animation" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://default_env.tres" type="Environment" id=10]
 [ext_resource path="res://scenes/fire_place.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/canoe.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/Kenney Bold.ttf"
@@ -292,6 +293,9 @@ environment = ExtResource( 10 )
 
 [node name="FirePlace" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.234, 0, 51.3607 )
+
+[node name="Canoe" parent="." instance=ExtResource( 12 )]
+transform = Transform( -2.49999, -4.84174e-05, -0.00888068, -6.24348e-05, 2, 0.000774044, 0.00740055, 0.000516175, -2.99999, 85.4278, -0.0823487, 48.6225 )
 
 [connection signal="dog_caught_frisbee" from="dog" to="GUI" method="_on_dog_dog_caught_frisbee"]
 [connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]

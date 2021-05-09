@@ -51,9 +51,9 @@ func _input(_event):
 
 
 func _on_AddScore_pressed():
-	$DisplayScore.visible = false 
-	$AddScore.visible = true 
-	$AddScore/SaveScore.visible = true
+	$DisplayScore.hide()
+	$AddScore.show()
+	$AddScore/SaveScore.show()
 	$AddScore/NameInput.grab_focus()
 
 func _on_Restart_pressed():
@@ -75,9 +75,9 @@ func _on_SaveScore_pressed():
 
 
 func show_highscore():
-	$AddScore.visible = false
-	$HighScore.visible = true
-	$HighScoreExit.visible = true
+	$AddScore.hide()
+	$HighScore.show()
+	$HighScoreExit.show()
 	refresh_highscore()
 
 
@@ -96,10 +96,10 @@ func refresh_highscore():
 
 
 func _on_HighScoreExit_pressed():
-	$HighScore.visible = false
-	$HighScoreExit.visible = false
-	$DisplayScore.visible = true
-	$AddScore/SaveScore.visible = false
+	$HighScore.hide()
+	$HighScoreExit.hide()
+	$DisplayScore.show()
+	$AddScore/SaveScore.hide()
 
 
 func _on_QuitGame_pressed():
