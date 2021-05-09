@@ -17,29 +17,38 @@ extends Node
 #10. private variables                                          #
 var main_menu : PackedScene = preload("res://scenes/menues/MainMenu.tscn")
 var main : PackedScene = preload("res://scenes/the_park/the_park.tscn")
+var vr_end_game_menu : PackedScene = preload("res://scenes/VR/vr_end_game.tscn")
 var end_game_menu : PackedScene = preload("res://scenes/menues/end_game_menu.tscn")
 var is_vr : bool = false
+
+var last_scene
 #11. onready variables                                          #
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
-	var start_scene = main_menu.instance()
-	add_child(start_scene)
+	self.set_scene(main_menu.instance())
 	
 #14. remaining built-in virtual methods                         #
 #15. public methods                                             #
 
 #16. private methods                                            #
 
-func _on_startgame(current_scene):
-	current_scene.queue_free()
-	var main_scene = main.instance()
+func set_scene(new_scene):
+	if self.last_scene:
+		self.last_scene.queue_free()
+	add_child(new_scene)
+	self.last_scene = new_scene
+
+func _on_startgame():
+	get_node("/root/GameData").on_restart()
+	self.set_scene(main.instance())
 	is_vr = false
-	add_child(main_scene)
 	get_tree().paused = false
 
-func _on_startvr(current_scene):
+func _on_startvr():
+	get_node("/root/GameData").on_restart()
+
 	var interface = ARVRServer.find_interface("OpenVR")
 	if interface and interface.initialize():
 		# turn to ARVR mode
@@ -54,32 +63,30 @@ func _on_startvr(current_scene):
 		# up our physics to 90fps to get in sync with our rendering
 		Engine.iterations_per_second = 90
 
-		var main_scene = main.instance()
 		is_vr = true
-		current_scene.queue_free()
-		add_child(main_scene)
+		self.set_scene(main.instance())
 		get_tree().paused = false
 	else:
 		print("OpenVR did not start correctly")
 
 func game_over():
 	get_tree().paused = true
-	var current_scene = get_child(1)
-	restart(current_scene)
+	restart()
 	
-func restart(current_scene):
-	if is_vr:
-		_on_startvr(current_scene)
-	else:
-		enter_end_game_menu(current_scene)
-	get_node("/root/GameData").on_restart()
+func restart():
+	# if is_vr:
+		# _on_startvr(current_scene)
+	# else:
+	enter_end_game_menu()
 
 
-func enter_end_game_menu(current_scene):
+func enter_end_game_menu():
 	var end_menu = end_game_menu.instance()
-	current_scene.queue_free()
+	if is_vr:
+		end_menu = vr_end_game_menu.instance()
+
+	self.set_scene(end_menu)
 	get_tree().paused = false
-	add_child(end_menu)
 	
 		#_on_startgame(current_scene)
 #################################################################

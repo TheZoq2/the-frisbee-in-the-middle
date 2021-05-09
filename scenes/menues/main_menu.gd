@@ -42,10 +42,10 @@ func _input(_event):
 
 
 func _on_TextureButton_pressed():
-	emit_signal("startgame", self)
+	emit_signal("startgame")
 
 func _on_startvr_pressed():
-	emit_signal("startvr", self)
+	emit_signal("startvr")
 
 
 func _on_InfoButton_pressed():

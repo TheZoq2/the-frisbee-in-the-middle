@@ -27,6 +27,7 @@ func _process(_delta):
 			catch_hand.set_target_and_catcher(closest_frisbee, self)
 		elif vr_catch_pressed:
 			closest_frisbee.queue_free()
+			get_node("/root/GameData").current_score += 1
 		else:
 			closest_frisbee.highlight_this_frame()
 	vr_catch_pressed = false

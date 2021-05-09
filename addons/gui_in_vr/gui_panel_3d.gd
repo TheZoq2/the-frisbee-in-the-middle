@@ -1,4 +1,4 @@
-extends MeshInstance
+extends StaticBody
 
 
 # Declare member variables here. Examples:
@@ -12,5 +12,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	self.rotation = Vector3(0, get_node("/root/GameData").game_time / 60.0 * PI*2, 0)
+#func _process(delta):
+#	pass
