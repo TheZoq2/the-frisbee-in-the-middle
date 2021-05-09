@@ -34,8 +34,9 @@ func _ready():
 func save_data(data : Array, path : String) -> void:
 	print("saving data")
 	var file : File = File.new()
-	file.open(path, File.WRITE)
-	file.store_line(to_json(data))
+	var result = file.open(path, File.WRITE)
+	if result == OK:
+		file.store_line(to_json(data))
 	file.close()
 
 func add_highscore(score_entry : Dictionary):
@@ -52,14 +53,16 @@ func add_highscore(score_entry : Dictionary):
 #16. private methods                                            #
 
 func _get_highscore_data() -> Array:
+	var data = []
 	var file : File = File.new()
 	if not file.file_exists(HIGHSCORE):
 		save_data(highscore_data, HIGHSCORE)
-	file.open(HIGHSCORE, File.READ)
-	var file_content = file.get_as_text()
-	var data = parse_json(file_content)
+	var result = file.open(HIGHSCORE, File.READ)
+	if result == OK:
+		var file_content = file.get_as_text()
+		data = parse_json(file_content)
+	#print(data)
 	file.close()
-	print(data)
 	return data
 
 

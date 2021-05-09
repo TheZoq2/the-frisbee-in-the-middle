@@ -71,11 +71,11 @@ func show_highscore():
 func refresh_highscore():
 	$HighScore.clear()
 	for i in range(10):
-		print("i: ", i)
+		#print("i: ", i)
 		#print(get_node("/root/GameData").highscore_data.size())
 		if get_node("/root/GameData").highscore_data.size() - 1 >= i:
 			var score : Dictionary = get_node("/root/GameData").highscore_data[i]
-			print("score: ", score)
+			#print("score: ", score)
 			$HighScore.add_item(str(score.keys()[0]), null, false)
 			$HighScore.add_item(score.values()[0], null, false)
 		else:
@@ -83,7 +83,7 @@ func refresh_highscore():
 
 
 func _on_HighScoreExit_pressed():
-	$HighScore.visible = true
+	$HighScore.visible = false
 	$HighScoreExit.visible = false
 	$DisplayScore.visible = true
 	$AddScore/SaveScore.visible = false

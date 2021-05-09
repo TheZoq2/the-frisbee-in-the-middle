@@ -45,7 +45,7 @@ func _input(event: InputEvent) -> void:
  
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	#take input
 	#var input := whatever
 	#print("Mainstate_physics")

@@ -17,6 +17,7 @@ var has_landed: bool = false
 func _ready():
 	var player_pos: Vector3 = get_parent().player.get_position()
 
+	# variable never used ?
 	var max_offset_angle = PI/4;
 	if get_node("/root/GameState").is_vr:
 		max_offset_angle = PI/10;

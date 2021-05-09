@@ -34,7 +34,7 @@ func _physics_process(delta):
 		if dot == 1 || dot == 0: # Straight up or down
 			stretch_arm.look_at(endPoint, Vector3.FORWARD)
 		else:
-			stretch_arm.look_at(endPoint, Vector3.UP)
+			stretch_arm.look_at(endPoint, Vector3.UP) #generates an error if direction between node origin and target is aligned with UP
 
 	if should_switch_parent:
 		# When the player moves fast away from the target, the target can't be
@@ -73,3 +73,7 @@ func set_target_and_catcher(new_target: Frisbee, new_catcher):
 	catcher = new_catcher
 	global_transform.origin = catcher.global_transform.origin \
 		+ player_height_offset * Vector3.UP
+
+func _on_children_despawn():
+	print(name, " is awaiting termination")
+	queue_free()

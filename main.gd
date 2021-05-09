@@ -71,9 +71,9 @@ func restart(current_scene):
 	if is_vr:
 		_on_startvr(current_scene)
 	else:
-		end_game_menu(current_scene)
+		enter_end_game_menu(current_scene)
 
-func end_game_menu(current_scene):
+func enter_end_game_menu(current_scene):
 	var end_menu = end_game_menu.instance()
 	current_scene.queue_free()
 	get_tree().paused = false

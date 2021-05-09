@@ -29,7 +29,7 @@ func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
 
 #14. remaining built-in virtual methods                         #
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if $GameMenu.visible:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
