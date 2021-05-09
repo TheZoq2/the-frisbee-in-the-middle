@@ -231,8 +231,9 @@ __meta__ = {
 }
 
 [node name="TreatCounter" type="HBoxContainer" parent="GUI/HUD"]
-margin_left = 790.0
-margin_right = 1020.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -230.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -269,7 +270,7 @@ __meta__ = {
 visible = false
 
 [node name="dog" parent="." instance=ExtResource( 8 )]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.81398, 0.796733, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.81398, 0.796733, 0 )
 rotation_factor = 7.5
 
 [node name="Timer" type="Timer" parent="."]
