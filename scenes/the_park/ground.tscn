@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://resources/tree_blocks_dark.tscn" type="PackedScene" id=1]
 [ext_resource path="res://addons/zylann.scatter/scatter3d.gd" type="Script" id=2]
 [ext_resource path="res://scenes/the_park/mat_ground.tres" type="Material" id=3]
 [ext_resource path="res://resources/cliff_large_stone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/the_park/MainGround.tscn" type="PackedScene" id=5]
 [ext_resource path="res://resources/grass_large.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
@@ -3018,15 +3019,6 @@ transform = Transform( 0.920303, 0, -0.391205, 0, 1, 0, 0.391205, 0, 0.920303, 8
 [node name="grass_large1009" parent="Scatter3D" instance=ExtResource( 6 )]
 transform = Transform( 0.0191949, 0, -0.999816, 0, 1, 0, 0.999816, 0, 0.0191949, 89.9743, 0.100006, -28.9868 )
 
-[node name="ground" type="StaticBody" parent="."]
-
-[node name="CollisionShape" type="CollisionShape" parent="ground"]
-shape = SubResource( 1 )
-
-[node name="CSGMesh" type="CSGMesh" parent="ground/CollisionShape"]
-mesh = SubResource( 2 )
-material = ExtResource( 3 )
-
 [node name="ground2" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200 )
 
@@ -3422,3 +3414,5 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -112.2,
 
 [node name="cliff_large_stone12" parent="cliffs" instance=ExtResource( 4 )]
 transform = Transform( 0.812328, 0, -0.583201, 0, 1, 0, 0.583201, 0, 0.812328, 108.457, 0, -111.418 )
+
+[node name="MainGround" parent="." instance=ExtResource( 5 )]

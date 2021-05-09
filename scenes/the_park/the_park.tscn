@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
 [ext_resource path="res://resources/the_parkCatch.tres" type="Animation" id=2]
@@ -16,6 +16,35 @@ font_path = "res://assets/fonts/Kenney Bold.ttf"
 [sub_resource type="DynamicFont" id=2]
 size = 12
 font_data = SubResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "move"
+length = 20.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 4, 5.1, 9, 13, 17 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 83.2159, -0.318121, 32.3649 ), Vector3( 83.2159, 0.0791425, 29.8666 ), Vector3( 83.2159, 0.0791425, 29.8666 ), Vector3( 84.6965, 0.0791425, 29.095 ), Vector3( 89.1668, 0.0791425, 29.095 ), Vector3( 89.1668, -0.232354, 32.866 ), Vector3( 89.1668, -0.878825, 36.6722 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 4, 5.1, 9, 17, 18, 20 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, -87.602, 0 ), Vector3( 0, -87.602, 0 ), Vector3( 0, -176.381, 0 ), Vector3( 0, -176.381, 0 ), Vector3( 0, -250, 0 ), Vector3( 0, -360, 0 ) ]
+}
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 1 )
@@ -210,7 +239,11 @@ autostart = true
 [node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Penguin" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429856, 0 )
+transform = Transform( -0.998006, 0, -0.0631214, 0, 1, 0, 0.0631214, 0, -0.998006, 89.1668, -0.509793, 34.4995 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Penguin")
+anims/move = SubResource( 3 )
 
 [connection signal="dog_caught_frisbee" from="dog" to="GUI" method="_on_dog_dog_caught_frisbee"]
 [connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]

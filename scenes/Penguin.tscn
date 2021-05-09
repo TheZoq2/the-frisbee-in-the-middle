@@ -47,6 +47,7 @@ radius = 0.02
 height = 0.05
 
 [node name="Penguin" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 2 )
