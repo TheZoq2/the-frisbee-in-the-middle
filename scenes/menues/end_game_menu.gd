@@ -21,13 +21,13 @@ signal startvr
 onready var score_label = $DisplayScore/ScoreLabel
 onready var add_score_label = $AddScore/ScoreLabel
 onready var name_label = $AddScore/NameInput
-#                                                               #
+
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
 	var parent = get_parent()
-	connect("startgame", parent, "_on_startgame")
-	connect("startvr", parent, "_on_startvr")
+	connect("startgame", get_node("/root/GameState"), "_on_startgame")
+	connect("startvr", get_node("/root/GameState"), "_on_startvr")
 	score_label.text = str(get_node("/root/GameData").get("current_score"))
 	add_score_label.text = score_label.text
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -56,11 +56,11 @@ func _on_AddScore_pressed():
 	$AddScore/NameInput.grab_focus()
 
 func _on_Restart_pressed():
-	emit_signal("startgame", self)
+	emit_signal("startgame")
 
 
 func _on_RestartVR_pressed():
-	emit_signal("startvr", self)
+	emit_signal("startvr")
 
 
 func _on_SaveScore_pressed():
