@@ -22,6 +22,7 @@ export var game_time : int = 20
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
 onready var dog_score_label = get_node("HUD/TextureRect2/Panel/HBoxContainer/DogNR")
+onready var treats_label = get_node("HUD/TreatCounter/TreatCountLabel")
 #                                                               #
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
@@ -77,3 +78,7 @@ func _on_Timer_timeout():
 func _on_dog_dog_caught_frisbee():
 	dog_score += 1
 	dog_score_label.text = str(dog_score)
+	
+func _on_Player_update_treat_count(remaining_treats):
+	treats_label.text = str(remaining_treats)
+	

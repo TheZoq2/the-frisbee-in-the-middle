@@ -26,8 +26,10 @@ func _physics_process(delta: float) -> void:
 		if _distance < arrive_threshold:
 			#_velocity = Vector3.ZERO
 			target.queue_free()
+			if target is Frisbee:
+				emit_signal("dog_caught_frisbee")
 			target = find_target()
-			emit_signal("dog_caught_frisbee")
+			
 			$dog/AnimationPlayer.play("jump")
 			jumping = true
 			return
@@ -79,10 +81,6 @@ func find_treats_in_range() -> Treat:
 				closest_treat = body
 				closest_distance = distance
 	return closest_treat
-
-	
-	
-	
 
 func _process(_delta):
 	if not $dog/AnimationPlayer.is_playing():
