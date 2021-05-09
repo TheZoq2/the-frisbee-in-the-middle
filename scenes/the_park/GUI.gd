@@ -19,6 +19,7 @@ var dog_score : int = 0
 var caught_frisbees : int = 0
 #11. onready variables                                          #
 var catch_sound = preload("res://assets/cash_register.ogg")
+var dog_sound = preload("res://assets/bulldog_short.mp3")
 var warning_sound = preload("res://assets/siren.ogg")
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
 onready var game_time_label = get_node("HUD/HBoxContainer/GameTimeLabel")
@@ -96,6 +97,10 @@ func _on_dog_dog_caught_frisbee():
 	dog_score += 1
 	dog_score_label.text = str(dog_score)
 	dog_catch_animator.play("Catch")
+	if effect_player.stream == warning_sound and effect_player.playing:
+		return
+	effect_player.stream = dog_sound
+	effect_player.play()
 
 func _on_Player_update_treat_count(remaining_treats):
 	treats_label.text = str(remaining_treats)	
