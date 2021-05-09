@@ -12,5 +12,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	self.rotation = Vector3(0, get_node("/root/GameData").game_time / 60.0 * PI*2, 0)

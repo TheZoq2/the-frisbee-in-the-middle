@@ -23,7 +23,9 @@ signal startvr
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
+# warning-ignore:return_value_discarded
 	connect("startgame", get_parent(), "_on_startgame")
+# warning-ignore:return_value_discarded
 	connect("startvr", get_parent(), "_on_startvr")
 #14. remaining built-in virtual methods                         #
 #15. public methods                                             #

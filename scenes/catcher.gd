@@ -1,6 +1,7 @@
 extends Area
 class_name Catcher
 
+# warning-ignore:unused_signal
 signal frisbee_caught
 signal children_despawn
 
@@ -22,6 +23,7 @@ func _process(_delta):
 			closest_frisbee.is_caught = true
 			closest_frisbee.stop_sound()
 			var catch_hand = catch_hand_template.instance()
+# warning-ignore:return_value_discarded
 			connect("children_despawn", catch_hand, "_on_children_despawn")
 			get_tree().get_root().add_child(catch_hand)
 			catch_hand.set_target_and_catcher(closest_frisbee, self)

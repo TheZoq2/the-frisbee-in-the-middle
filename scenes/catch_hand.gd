@@ -20,6 +20,7 @@ func _ready():
 	stretch_arm = stretch_arm_template.instance()
 	get_tree().get_root().add_child(stretch_arm)
 
+# warning-ignore:return_value_discarded
 	connect("body_entered", self, "on_body_entered");
 
 func _physics_process(delta):

@@ -25,8 +25,9 @@ onready var name_label = $AddScore/NameInput
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
-	var parent = get_parent()
+# warning-ignore:return_value_discarded
 	connect("startgame", get_node("/root/GameState"), "_on_startgame")
+# warning-ignore:return_value_discarded
 	connect("startvr", get_node("/root/GameState"), "_on_startvr")
 	score_label.text = str(get_node("/root/GameData").get("current_score"))
 	add_score_label.text = score_label.text

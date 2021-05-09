@@ -42,7 +42,9 @@ var throw_action_pressed = false
 #12. optional built-in virtual _init method                     #
 #13. built-in virtual _ready method                             #
 func _ready():
+# warning-ignore:return_value_discarded
 	$Catcher.connect("frisbee_caught", get_node("../GUI"), "_on_Catcher_frisbee_caught")
+# warning-ignore:return_value_discarded
 	self.connect("update_treat_count", get_node("../GUI"), "_on_Player_update_treat_count")
 	emit_signal("update_treat_count", remaining_treats)
 	
