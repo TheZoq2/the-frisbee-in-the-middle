@@ -31,10 +31,12 @@ func _physics_process(delta: float) -> void:
 			target.queue_free()
 			if target is Frisbee:
 				emit_signal("dog_caught_frisbee")
+				$dog/Armature/Skeleton/CaughtFrisbee/frisbee.show()
+			else:
+				$dog/Armature/Skeleton/CaughtFrisbee/treat.show()
 			target = find_target()
 			
 			$dog/AnimationPlayer.play("jump")
-			$dog/Armature/Skeleton/CaughtFrisbee.show()
 			jumping = true
 			return
 		var new_dog_transform = transform.looking_at(target.global_transform.origin, Vector3.UP)
@@ -92,4 +94,5 @@ func _process(_delta):
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "jump":
-		$dog/Armature/Skeleton/CaughtFrisbee.hide()
+		$dog/Armature/Skeleton/CaughtFrisbee/frisbee.hide()
+		$dog/Armature/Skeleton/CaughtFrisbee/treat.hide()
