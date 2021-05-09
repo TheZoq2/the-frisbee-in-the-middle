@@ -296,6 +296,7 @@ margin_bottom = 306.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.87451, 0.87451, 0.87451, 1 )
 align = 1
+placeholder_text = "your name"
 
 [node name="MarginContainer" type="MarginContainer" parent="AddScore"]
 margin_top = 310.0

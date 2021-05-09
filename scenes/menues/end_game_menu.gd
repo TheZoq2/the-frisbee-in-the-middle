@@ -66,7 +66,10 @@ func _on_RestartVR_pressed():
 
 func _on_SaveScore_pressed():
 	var score_entry : Dictionary = {}
-	score_entry[get_node("/root/GameData").get("current_score")] = name_label.text
+	var user_name = name_label.text
+	if user_name == "" or user_name == null:
+		user_name = name_label.get_placeholder() 
+	score_entry[get_node("/root/GameData").get("current_score")] = user_name
 	get_node("/root/GameData").add_highscore(score_entry)
 	show_highscore()
 
