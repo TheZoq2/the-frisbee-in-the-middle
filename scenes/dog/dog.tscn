@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/dog/dog.gd" type="Script" id=1]
 [ext_resource path="res://assets/dog.glb" type="PackedScene" id=2]
 [ext_resource path="res://assets/frisbee.glb" type="PackedScene" id=3]
-[ext_resource path="res://assets/treat.obj" type="ArrayMesh" id=4]
-[ext_resource path="res://resources/treat.tres" type="Material" id=5]
+[ext_resource path="res://scenes/treat_mesh.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -19,14 +18,15 @@ transform = Transform( -1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.8
 [node name="Armature" parent="dog" index="0"]
 transform = Transform( 1, -6.70496e-17, -1.03652e-17, 6.70496e-17, 0.953319, 0.301964, -1.03652e-17, -0.301964, 0.953319, 1.69279e-16, 0.762364, -0.301079 )
 
+[node name="Skeleton" parent="dog/Armature" index="0"]
+bones/1/bound_children = [ NodePath("CaughtFrisbee") ]
+
 [node name="CaughtFrisbee" type="BoneAttachment" parent="dog/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, -1.66892e-06, -1.17481e-06, 0.710268, -0.703917, 1.18539e-06, 0.703926, 0.710272, 6.02161e-08, 0.112614, 0.610289 )
+transform = Transform( 1, 7.95808e-13, -1.66893e-06, -1.17285e-06, 0.711433, -0.702752, 1.18733e-06, 0.702753, 0.711434, 1.97588e-08, 0.0201099, 0.595482 )
 bone_name = "Head"
 
-[node name="treat" type="MeshInstance" parent="dog/Armature/Skeleton/CaughtFrisbee"]
-transform = Transform( 0.2, -1.51913e-07, 2.97213e-07, 5.50671e-13, 0.178086, 0.091024, -3.33787e-07, -0.0910242, 0.178086, 3.51677e-07, 0.517628, 0.290878 )
-mesh = ExtResource( 4 )
-material/0 = ExtResource( 5 )
+[node name="treat" parent="dog/Armature/Skeleton/CaughtFrisbee" instance=ExtResource( 4 )]
+transform = Transform( 1, -1.87209e-13, 3.41061e-13, 0, 0.890427, 0.455125, 0, -0.455125, 0.890428, 2.90826e-07, 0.463055, 0.210266 )
 
 [node name="frisbee" parent="dog/Armature/Skeleton/CaughtFrisbee" instance=ExtResource( 3 )]
 transform = Transform( 0.2, -1.51913e-07, 2.97213e-07, 5.62217e-13, 0.178086, 0.091024, -3.33787e-07, -0.0910242, 0.178086, 3.49717e-07, 0.503803, 0.288982 )
