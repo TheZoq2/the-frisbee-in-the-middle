@@ -87,3 +87,7 @@ func _on_HighScoreExit_pressed():
 	$HighScoreExit.visible = false
 	$DisplayScore.visible = true
 	$AddScore/SaveScore.visible = false
+
+
+func _on_QuitGame_pressed():
+	get_tree().quit()
