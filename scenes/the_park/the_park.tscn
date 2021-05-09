@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
 [ext_resource path="res://resources/the_parkCatch.tres" type="Animation" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/the_park/GUI.gd" type="Script" id=4]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
 [ext_resource path="res://scenes/the_park/ground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Penguin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/dog/dog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/menues/GameMenu.tscn" type="PackedScene" id=9]
 
@@ -205,6 +206,11 @@ rotation_factor = 7.5
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
 [node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Penguin" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.429856, 0 )
+
 [connection signal="dog_caught_frisbee" from="dog" to="GUI" method="_on_dog_dog_caught_frisbee"]
 [connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]
