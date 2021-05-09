@@ -278,7 +278,7 @@ autostart = true
 [node name="EffectsPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Penguin" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.2159, -0.166752, 31.413 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 83.2159, -0.231869, 31.8225 )
 
 [node name="PenguinAnimator" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Penguin")

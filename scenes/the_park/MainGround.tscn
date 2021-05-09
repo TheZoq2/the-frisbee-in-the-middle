@@ -124,7 +124,7 @@ material/0 = null
 shape = SubResource( 7 )
 
 [node name="MeshInstance6" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5101, 0, 12.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5, 0, 12.5 )
 mesh = SubResource( 8 )
 material/0 = null
 
@@ -134,7 +134,7 @@ material/0 = null
 shape = SubResource( 9 )
 
 [node name="lake_mesh" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5101, 0.05, 37.5 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 87.5, 0.05, 37.5 )
 mesh = SubResource( 1 )
 material/0 = ExtResource( 1 )
 
