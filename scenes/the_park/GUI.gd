@@ -84,11 +84,9 @@ func _on_Timer_timeout():
 func _on_dog_dog_caught_frisbee():
 	dog_score += 1
 	dog_score_label.text = str(dog_score)
-<<<<<<< HEAD
-	
-func _on_Player_update_treat_count(remaining_treats):
-	treats_label.text = str(remaining_treats)
-	
-=======
 	dog_catch_animator.play("Catch")
->>>>>>> af7a3846d86c7e2979e9462db2f8eaadba260d46
+
+func _on_Player_update_treat_count(remaining_treats):
+	treats_label.text = str(remaining_treats)	
+
+
