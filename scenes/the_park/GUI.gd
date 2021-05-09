@@ -17,7 +17,6 @@ extends CanvasLayer
 #10. private variables                                          #
 var dog_score : int = 0 
 var caught_frisbees : int = 0
-export var game_time : int = 20
 #11. onready variables                                          #
 var catch_sound = preload("res://assets/cash_register.ogg")
 onready var number_label = get_node("HUD/TextureRect/Panel/HBoxContainer/NR")
@@ -56,9 +55,8 @@ func _input(_event):
 
 func _on_Catcher_frisbee_caught():
 	#print("# I cought one!!! ")
-	caught_frisbees += 1
-	number_label.text = str(caught_frisbees)
-	get_node("/root/GameData").current_score = caught_frisbees
+	get_node("/root/GameData").current_score += 1
+	number_label.text = str(get_node("/root/GameData").current_score)
 	effect_player.stream = catch_sound
 	effect_player.play()
 	catch_animator.play("Catch")
@@ -76,9 +74,9 @@ func _on_QuitGameButton_pressed():
 
 
 func _on_Timer_timeout():
-	game_time -= 1
-	game_time_label.text = str(game_time)
-	if game_time == 0:
+	get_node("/root/GameData").game_time -= 1
+	game_time_label.text = str(get_node("/root/GameData").game_time)
+	if get_node("/root/GameData").game_time == 0:
 		get_node("/root/GameState").game_over()
 
 
