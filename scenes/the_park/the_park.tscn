@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/the_park/the_park.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Penguin.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/parkgoer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/the_park/GUI.gd" type="Script" id=4]
 [ext_resource path="res://assets/BlueButton.png" type="Texture" id=5]
@@ -193,6 +194,9 @@ rotation_factor = 7.5
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="Penguin" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456114, 0 )
 
 [connection signal="dog_caught_frisbee" from="dog" to="GUI" method="_on_dog_dog_caught_frisbee"]
 [connection signal="timeout" from="Timer" to="GUI" method="_on_Timer_timeout"]
